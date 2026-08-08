@@ -1,0 +1,70 @@
+html, body {
+    margin: 0;
+    font-family: 'Pretendard', 'Malgun Gothic', 'Helvetica Neue', Arial, sans-serif;
+    background: #12151c;
+    color: #e8eaf0;
+}
+
+h1:focus, h2:focus {
+    outline: none;
+}
+
+/* ---- 초기 로딩 화면 ---- */
+.loading-progress {
+    position: relative;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    margin: 20vh auto 1rem;
+}
+
+.loading-progress circle {
+    fill: none;
+    stroke: #2a3040;
+    stroke-width: 0.6rem;
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
+}
+
+.loading-progress circle:last-child {
+    stroke: #2f6fed;
+    stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+    transition: stroke-dasharray 0.05s ease-in-out;
+}
+
+.loading-progress-text {
+    text-align: center;
+    font-weight: 600;
+    color: #8a93a6;
+}
+
+.loading-progress-text:after {
+    content: var(--blazor-load-percentage-text, "로딩 중");
+}
+
+/* ---- 전역 오류 배너 ---- */
+#blazor-error-ui {
+    background: #b33939;
+    color: #fff;
+    bottom: 0;
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.4);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .reload {
+    color: #fff;
+    text-decoration: underline;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+    color: #fff;
+}
