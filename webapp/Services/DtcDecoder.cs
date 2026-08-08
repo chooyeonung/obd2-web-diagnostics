@@ -1,6 +1,6 @@
-namespace ObdWebApp.Services;
+using ObdWebApp.Models;
 
-public sealed record DiagnosticTroubleCode(string Code, string Description);
+namespace ObdWebApp.Services;
 
 /// <summary>Mode 03 응답의 2바이트 쌍을 P/C/B/U 코드 문자열로 변환한다.</summary>
 public static class DtcDecoder

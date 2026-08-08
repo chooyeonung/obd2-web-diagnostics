@@ -1,8 +1,7 @@
 @page "/"
-@using ObdWebApp.Services
-@inject ObdService Obd
-@inject SimulatorTransport Simulator
-@inject BleTransport Ble
+@using ObdWebApp.Models
+@using ObdWebApp.ViewModels
+@inject DashboardViewModel Vm
 @implements IDisposable
 
 <PageTitle>OBD-II 웹 진단</PageTitle>
@@ -10,45 +9,45 @@
 @* ---------- 연결 패널 ---------- *@
 <section class="panel">
     <div class="connect-row">
-        <label><input type="radio" name="tp" checked="@(_useSimulator)"
-                      @onchange="@(() => _useSimulator = true)" disabled="@_connected" /> 시뮬레이터 (가상 ECU)</label>
-        <label><input type="radio" name="tp" checked="@(!_useSimulator)"
-                      @onchange="@(() => _useSimulator = false)" disabled="@_connected" /> vLinker / ELM327 (BLE)</label>
+        <label><input type="radio" name="tp" checked="@(Vm.UseSimulator)"
+                      @onchange="@(() => Vm.UseSimulator = true)" disabled="@Vm.IsConnected" /> 시뮬레이터 (가상 ECU)</label>
+        <label><input type="radio" name="tp" checked="@(!Vm.UseSimulator)"
+                      @onchange="@(() => Vm.UseSimulator = false)" disabled="@Vm.IsConnected" /> vLinker / ELM327 (BLE)</label>
 
-        @if (!_connected)
+        @if (!Vm.IsConnected)
         {
-            <button class="btn primary" @onclick="ConnectAsync" disabled="@_busy">
-                @(_busy ? "연결 중..." : "연결")
+            <button class="btn primary" @onclick="Vm.ConnectAsync" disabled="@Vm.IsBusy">
+                @(Vm.IsBusy ? "연결 중..." : "연결")
             </button>
         }
         else
         {
-            <span class="status ok">● @Obd.TransportName</span>
-            @if (_vin is not null) { <span class="vin">VIN: @_vin</span> }
-            <button class="btn" @onclick="DisconnectAsync">연결 해제</button>
+            <span class="status ok">● @Vm.TransportName</span>
+            @if (Vm.Vin is not null) { <span class="vin">VIN: @Vm.Vin</span> }
+            <button class="btn" @onclick="Vm.DisconnectAsync">연결 해제</button>
         }
     </div>
-    @if (_error is not null) { <p class="error">@_error</p> }
+    @if (Vm.Error is not null) { <p class="error">@Vm.Error</p> }
 </section>
 
 @* ---------- 실시간 게이지 ---------- *@
 <section class="panel">
     <h2>실시간 데이터</h2>
     <div class="gauges">
-        @foreach (var pid in DashboardPids)
+        @foreach (var pid in DashboardViewModel.DashboardPids)
         {
             var def = PidDefinitions.Mode01[pid];
-            var val = _snapshot?.Get(pid);
+            var val = Vm.Snapshot?.Get(pid);
             <div class="gauge">
                 <div class="gauge-name">@def.Name</div>
-                <div class="gauge-value">@(val is null ? "—" : FormatValue(pid, val.Value))</div>
+                <div class="gauge-value">@(val is null ? "—" : DashboardViewModel.FormatValue(pid, val.Value))</div>
                 <div class="gauge-unit">@def.Unit</div>
             </div>
         }
     </div>
-    @if (_connected)
+    @if (Vm.IsConnected)
     {
-        <p class="hint">@(_polling ? $"폴링 중 · 주기 {PollIntervalMs}ms" : "폴링 대기")</p>
+        <p class="hint">@(Vm.IsPolling ? $"폴링 중 · 주기 {DashboardViewModel.PollIntervalMs}ms" : "폴링 대기")</p>
     }
 </section>
 
@@ -56,16 +55,16 @@
 <section class="panel">
     <h2>고장코드 (DTC)</h2>
     <div class="dtc-actions">
-        <button class="btn" @onclick="ReadDtcsAsync" disabled="@(!_connected || _busy)">조회</button>
-        <button class="btn danger" @onclick="OnClearClicked" disabled="@(!_connected || _busy || _dtcs is null || _dtcs.Count == 0)">
-            @(_confirmClear ? "정말 소거할까요? (다시 클릭)" : "소거")
+        <button class="btn" @onclick="Vm.ReadDtcsAsync" disabled="@(!Vm.IsConnected || Vm.IsBusy)">조회</button>
+        <button class="btn danger" @onclick="Vm.ClearDtcsCommandAsync" disabled="@(!Vm.CanClearDtcs)">
+            @(Vm.ConfirmClear ? "정말 소거할까요? (다시 클릭)" : "소거")
         </button>
     </div>
-    @if (_dtcs is null)
+    @if (Vm.Dtcs is null)
     {
         <p class="hint">조회 버튼을 눌러 저장된 고장코드를 읽습니다.</p>
     }
-    else if (_dtcs.Count == 0)
+    else if (Vm.Dtcs.Count == 0)
     {
         <p class="ok-text">저장된 고장코드가 없습니다. ✓</p>
     }
@@ -74,7 +73,7 @@
         <table class="dtc-table">
             <thead><tr><th>코드</th><th>설명</th></tr></thead>
             <tbody>
-                @foreach (var dtc in _dtcs)
+                @foreach (var dtc in Vm.Dtcs)
                 {
                     <tr><td class="dtc-code">@dtc.Code</td><td>@dtc.Description</td></tr>
                 }
@@ -85,152 +84,17 @@
 
 @* ---------- 통신 로그 ---------- *@
 <section class="panel">
-    <h2>통신 로그 <button class="btn tiny" @onclick="@(() => _log.Clear())">지우기</button></h2>
-    <pre class="log">@string.Join("\n", _log.TakeLast(30))</pre>
+    <h2>통신 로그 <button class="btn tiny" @onclick="Vm.ClearLog">지우기</button></h2>
+    <pre class="log">@string.Join("\n", Vm.Log.TakeLast(30))</pre>
 </section>
 
 @code {
-    private const int PollIntervalMs = 700;
-    private static readonly byte[] DashboardPids = { 0x0C, 0x0D, 0x05, 0x04, 0x11, 0x10, 0x2F, 0x42 };
+    protected override void OnInitialized() =>
+        Vm.PropertyChanged += OnVmPropertyChanged;
 
-    private bool _useSimulator = true;
-    private bool _connected;
-    private bool _busy;
-    private bool _polling;
-    private string? _error;
-    private string? _vin;
-    private VehicleSnapshot? _snapshot;
-    private List<DiagnosticTroubleCode>? _dtcs;
-    private readonly List<string> _log = new();
-    private CancellationTokenSource? _pollCts;
-
-    protected override void OnInitialized()
-    {
-        Obd.CommandLogged += OnCommandLogged;
-        Obd.Disconnected += OnTransportDisconnected;
-    }
-
-    private async Task ConnectAsync()
-    {
-        _busy = true; _error = null;
-        try
-        {
-            IObdTransport transport = _useSimulator ? Simulator : Ble;
-            await Obd.ConnectAsync(transport);
-            _connected = true;
-            _vin = await Obd.ReadVinAsync();
-            StartPolling();
-        }
-        catch (Exception ex)
-        {
-            _error = ex.Message;
-        }
-        finally { _busy = false; }
-    }
-
-    private async Task DisconnectAsync()
-    {
-        StopPolling();
-        try { await Obd.DisconnectAsync(); } catch { /* 연결 해제 실패는 무시 */ }
-        _connected = false;
-        _snapshot = null;
-        _vin = null;
-        _dtcs = null;
-    }
-
-    private void StartPolling()
-    {
-        _pollCts = new CancellationTokenSource();
-        _polling = true;
-        _ = PollLoopAsync(_pollCts.Token);
-    }
-
-    private void StopPolling()
-    {
-        _pollCts?.Cancel();
-        _pollCts = null;
-        _polling = false;
-    }
-
-    private async Task PollLoopAsync(CancellationToken ct)
-    {
-        while (!ct.IsCancellationRequested && _connected)
-        {
-            try
-            {
-                _snapshot = await Obd.ReadSnapshotAsync(DashboardPids);
-                await InvokeAsync(StateHasChanged);
-            }
-            catch (Exception ex)
-            {
-                _error = $"폴링 오류: {ex.Message}";
-                await InvokeAsync(StateHasChanged);
-            }
-
-            try { await Task.Delay(PollIntervalMs, ct); }
-            catch (TaskCanceledException) { break; }
-        }
-        _polling = false;
-    }
-
-    private async Task ReadDtcsAsync()
-    {
-        _busy = true; _error = null;
-        try { _dtcs = await Obd.ReadDtcsAsync(); }
-        catch (Exception ex) { _error = ex.Message; }
-        finally { _busy = false; }
-    }
-
-    private bool _confirmClear;
-
-    /// <summary>소거는 학습값까지 지우는 되돌릴 수 없는 동작 — 2단계 클릭 확인을 거친다.</summary>
-    private async Task OnClearClicked()
-    {
-        if (!_confirmClear) { _confirmClear = true; return; }
-        _confirmClear = false;
-        await ClearDtcsAsync();
-    }
-
-    private async Task ClearDtcsAsync()
-    {
-        _busy = true; _error = null;
-        try
-        {
-            var ok = await Obd.ClearDtcsAsync();
-            if (ok) _dtcs = await Obd.ReadDtcsAsync();
-            else _error = "소거 명령이 거부되었습니다.";
-        }
-        catch (Exception ex) { _error = ex.Message; }
-        finally { _busy = false; }
-    }
-
-    private void OnCommandLogged(string cmd, string resp)
-    {
-        _log.Add($"> {cmd}\n  {resp.Replace("\r", " ").Replace("\n", " ")}");
-        if (_log.Count > 200) _log.RemoveRange(0, _log.Count - 200);
+    private void OnVmPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e) =>
         InvokeAsync(StateHasChanged);
-    }
 
-    private void OnTransportDisconnected()
-    {
-        StopPolling();
-        _connected = false;
-        _error = "연결이 끊어졌습니다.";
-        InvokeAsync(StateHasChanged);
-    }
-
-    private static string FormatValue(byte pid, double v) => pid switch
-    {
-        0x0C => ((int)v).ToString("N0"),
-        0x42 => v.ToString("F1"),
-        0x10 => v.ToString("F1"),
-        _ => ((int)Math.Round(v)).ToString(),
-    };
-
-    public void Dispose()
-    {
-        StopPolling();
-        Obd.CommandLogged -= OnCommandLogged;
-        Obd.Disconnected -= OnTransportDisconnected;
-    }
+    public void Dispose() =>
+        Vm.PropertyChanged -= OnVmPropertyChanged;
 }

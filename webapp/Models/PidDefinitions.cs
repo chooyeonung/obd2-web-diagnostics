@@ -1,4 +1,4 @@
-namespace ObdWebApp.Services;
+namespace ObdWebApp.Models;
 
 /// <summary>SAE J1979 Mode 01 PID 정의: 이름, 단위, 데이터 길이, 디코딩 공식.</summary>
 public sealed record PidDefinition(byte Pid, string Name, string Unit, int DataBytes, Func<byte[], double> Decode)

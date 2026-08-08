@@ -1,13 +1,7 @@
 using System.Text;
+using ObdWebApp.Models;
 
 namespace ObdWebApp.Services;
-
-/// <summary>차량에서 읽어온 실시간 값 한 세트.</summary>
-public sealed class VehicleSnapshot
-{
-    public Dictionary<byte, double> Values { get; } = new();
-    public double? Get(byte pid) => Values.TryGetValue(pid, out var v) ? v : null;
-}
 
 /// <summary>
 /// 고수준 진단 API. ELM327 응답 텍스트를 파싱해 의미 있는 값으로 변환한다.
