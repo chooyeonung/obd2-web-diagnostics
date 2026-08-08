@@ -139,7 +139,7 @@
 <details class="log-details">
     <summary>
         통신 로그 <span class="section-meta">@Vm.Log.Count건</span>
-        <button class="btn sm" @onclick="Vm.ClearLog" @onclick:stopPropagation>지우기</button>
+        <button class="btn sm" @onclick="Vm.ClearLog" @onclick:stopPropagation="true">지우기</button>
     </summary>
     <pre class="log">@string.Join("\n", Vm.Log.TakeLast(30))</pre>
 </details>
