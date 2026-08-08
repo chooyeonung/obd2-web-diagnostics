@@ -34,7 +34,12 @@
         window.obdEnv = { hasBle: () => !!(navigator.bluetooth) };
     </script>
     <script src="_framework/blazor.webassembly.js"></script>
-    <script>navigator.serviceWorker.register('service-worker.js');</script>
+    <script>
+        // PWA 서비스 워커: 보안 컨텍스트(HTTPS/localhost)에서만 등록
+        // (ESP32 self-hosting = http://192.168.4.1 에서는 조용히 건너뜀)
+        if (window.isSecureContext && 'serviceWorker' in navigator)
+            navigator.serviceWorker.register('service-worker.js');
+    </script>
 </body>
 
 </html>
