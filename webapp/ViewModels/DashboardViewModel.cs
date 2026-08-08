@@ -47,6 +47,27 @@ public sealed class DashboardViewModel : INotifyPropertyChanged, IAsyncDisposabl
     private TransportKind _kind = TransportKind.Simulator;
     public TransportKind Kind { get => _kind; set => SetField(ref _kind, value); }
 
+    private bool _bleSupported;
+    public bool BleSupported { get => _bleSupported; private set => SetField(ref _bleSupported, value); }
+
+    private bool _autoDetected;
+    public bool AutoDetected { get => _autoDetected; private set => SetField(ref _autoDetected, value); }
+
+    /// <summary>
+    /// 기기 능력 기반 자동 모드 선택: Web Bluetooth 지원(안드로이드/데스크톱 크롬) → BLE 동글,
+    /// 미지원(iPhone/Safari) → 자작 보드 WiFi. 시뮬레이터는 수동 선택 시에만.
+    /// </summary>
+    public void ApplyAutoDetect(bool bleSupported)
+    {
+        BleSupported = bleSupported;
+        Kind = bleSupported ? TransportKind.Ble : TransportKind.WebSocket;
+        AutoDetected = true;
+    }
+
+    public string AutoDetectHint => !AutoDetected ? "" : BleSupported
+        ? "이 기기는 BLE를 지원해요 — 동글 연결을 추천"
+        : "이 기기(iPhone/Safari)는 BLE 미지원 — WiFi 보드 연결로 설정됨";
+
     /// <summary>자작 보드 WebSocket 주소 (ESP32 SoftAP 기본값).</summary>
     private string _wsUrl = "ws://192.168.4.1/ws";
     public string WsUrl { get => _wsUrl; set => SetField(ref _wsUrl, value); }
@@ -78,6 +99,25 @@ public sealed class DashboardViewModel : INotifyPropertyChanged, IAsyncDisposabl
     public List<string> Log { get; } = new();
     public string TransportName => _obd.TransportName;
     public bool CanClearDtcs => IsConnected && !IsBusy && Dtcs is { Count: > 0 };
+
+    // ---------- 스파크라인용 이력 (PID별 최근 N개 샘플) ----------
+
+    public const int HistoryLength = 16;
+    private readonly Dictionary<byte, List<double>> _history = new();
+
+    public IReadOnlyList<double>? GetHistory(byte pid) =>
+        _history.TryGetValue(pid, out var h) ? h : null;
+
+    private void PushHistory(VehicleSnapshot snap)
+    {
+        foreach (var (pid, value) in snap.Values)
+        {
+            if (!_history.TryGetValue(pid, out var list))
+                _history[pid] = list = new List<double>(HistoryLength + 1);
+            list.Add(value);
+            if (list.Count > HistoryLength) list.RemoveAt(0);
+        }
+    }
 
     // ---------- 커맨드 ----------
 
@@ -115,6 +155,7 @@ public sealed class DashboardViewModel : INotifyPropertyChanged, IAsyncDisposabl
         Vin = null;
         Dtcs = null;
         ConfirmClear = false;
+        _history.Clear();
     }
 
     public async Task ReadDtcsAsync()
@@ -170,7 +211,9 @@ public sealed class DashboardViewModel : INotifyPropertyChanged, IAsyncDisposabl
         {
             try
             {
-                Snapshot = await _obd.ReadSnapshotAsync(DashboardPids);
+                var snap = await _obd.ReadSnapshotAsync(DashboardPids);
+                PushHistory(snap);
+                Snapshot = snap;
             }
             catch (Exception ex)
             {

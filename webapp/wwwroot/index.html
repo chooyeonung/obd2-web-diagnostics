@@ -29,6 +29,10 @@
         <a href="" class="reload">새로고침</a>
         <a class="dismiss">🗙</a>
     </div>
+    <script>
+        // 기기 능력 감지 (Blazor에서 JS interop으로 호출)
+        window.obdEnv = { hasBle: () => !!(navigator.bluetooth) };
+    </script>
     <script src="_framework/blazor.webassembly.js"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
 </body>

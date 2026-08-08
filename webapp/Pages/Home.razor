@@ -1,102 +1,238 @@
 @page "/"
+@using System.Text
 @using ObdWebApp.Models
 @using ObdWebApp.ViewModels
 @inject DashboardViewModel Vm
+@inject IJSRuntime JS
 @implements IDisposable
 
-<PageTitle>OBD-II 웹 진단</PageTitle>
+<PageTitle>OBD-II 진단</PageTitle>
 
-@* ---------- 연결 패널 ---------- *@
-<section class="panel">
-    <div class="connect-row">
-        <label><input type="radio" name="tp" checked="@(Vm.Kind == TransportKind.Simulator)"
-                      @onchange="@(() => Vm.Kind = TransportKind.Simulator)" disabled="@Vm.IsConnected" /> 시뮬레이터 (가상 ECU)</label>
-        <label><input type="radio" name="tp" checked="@(Vm.Kind == TransportKind.Ble)"
-                      @onchange="@(() => Vm.Kind = TransportKind.Ble)" disabled="@Vm.IsConnected" /> vLinker / ELM327 (BLE)</label>
-        <label><input type="radio" name="tp" checked="@(Vm.Kind == TransportKind.WebSocket)"
-                      @onchange="@(() => Vm.Kind = TransportKind.WebSocket)" disabled="@Vm.IsConnected" /> 자작 보드 (WiFi/WebSocket)</label>
-        @if (Vm.Kind == TransportKind.WebSocket && !Vm.IsConnected)
-        {
-            <input class="ws-url" @bind="Vm.WsUrl" placeholder="ws://192.168.4.1/ws" />
-        }
-
+@* ══════════ 연결 바 ══════════ *@
+<section class="card connect-card">
+    <div class="connect-left">
         @if (!Vm.IsConnected)
         {
             <button class="btn primary" @onclick="Vm.ConnectAsync" disabled="@Vm.IsBusy">
-                @(Vm.IsBusy ? "연결 중..." : "연결")
+                @(Vm.IsBusy ? "연결 중…" : ConnectLabel)
             </button>
+
+            @if (Vm.Kind == TransportKind.WebSocket)
+            {
+                <input class="ws-url" @bind="Vm.WsUrl" spellcheck="false" placeholder="ws://192.168.4.1/ws" />
+            }
+
+            <select class="mode-select" title="연결 방식 변경"
+                    value="@Vm.Kind" @onchange="OnKindChanged">
+                <option value="@TransportKind.Ble" disabled="@(!Vm.BleSupported)">vLinker 동글 (BLE)</option>
+                <option value="@TransportKind.WebSocket">자작 보드 (WiFi)</option>
+                <option value="@TransportKind.Simulator">시뮬레이터 체험</option>
+            </select>
         }
         else
         {
-            <span class="status ok">● @Vm.TransportName</span>
-            @if (Vm.Vin is not null) { <span class="vin">VIN: @Vm.Vin</span> }
             <button class="btn" @onclick="Vm.DisconnectAsync">연결 해제</button>
         }
     </div>
-    @if (Vm.Error is not null) { <p class="error">@Vm.Error</p> }
-</section>
 
-@* ---------- 실시간 게이지 ---------- *@
-<section class="panel">
-    <h2>실시간 데이터</h2>
-    <div class="gauges">
-        @foreach (var pid in DashboardViewModel.DashboardPids)
+    <div class="connect-right">
+        @if (!Vm.IsConnected && Vm.AutoDetected)
         {
-            var def = PidDefinitions.Mode01[pid];
-            var val = Vm.Snapshot?.Get(pid);
-            <div class="gauge">
-                <div class="gauge-name">@def.Name</div>
-                <div class="gauge-value">@(val is null ? "—" : DashboardViewModel.FormatValue(pid, val.Value))</div>
-                <div class="gauge-unit">@def.Unit</div>
-            </div>
+            <span class="detect-hint">@Vm.AutoDetectHint</span>
+        }
+        <span class="chip @(Vm.IsConnected ? "chip-good" : "")">
+            <span class="dot"></span>
+            @(Vm.IsConnected ? Vm.TransportName : "연결 안 됨")
+        </span>
+        @if (Vm.Vin is not null)
+        {
+            <span class="vin" title="차대번호">@Vm.Vin</span>
         }
     </div>
+</section>
+
+@if (Vm.Error is not null)
+{
+    <p class="alert"><span class="alert-ico">⚠</span> @Vm.Error</p>
+}
+
+@* ══════════ 실시간 텔레메트리 ══════════ *@
+<div class="section-head">
+    <h2>실시간 데이터</h2>
     @if (Vm.IsConnected)
     {
-        <p class="hint">@(Vm.IsPolling ? $"폴링 중 · 주기 {DashboardViewModel.PollIntervalMs}ms" : "폴링 대기")</p>
+        <span class="section-meta">@(Vm.IsPolling ? $"{DashboardViewModel.PollIntervalMs}ms 간격 폴링" : "폴링 대기")</span>
+    }
+</div>
+
+<section class="grid">
+    @* — 히어로: 엔진 회전수 — *@
+    <div class="card tile hero">
+        <div class="tile-label">엔진 회전수</div>
+        <div class="tile-value-row">
+            <span class="hero-value">@Fmt(0x0C)</span>
+            <span class="tile-unit">rpm</span>
+        </div>
+        @Spark(0x0C, 40)
+    </div>
+
+    @foreach (var t in Tiles)
+    {
+        var def = PidDefinitions.Mode01[t.Pid];
+        <div class="card tile">
+            <div class="tile-label">@def.Name</div>
+            <div class="tile-value-row">
+                <span class="tile-value">@Fmt(t.Pid)</span>
+                <span class="tile-unit">@def.Unit</span>
+            </div>
+            @if (t.Meter != MeterKind.None)
+            {
+                var (pct, cls) = MeterState(t);
+                <div class="meter"><div class="meter-fill @cls" style="width:@(pct)%"></div></div>
+            }
+            else
+            {
+                @Spark(t.Pid, 26)
+            }
+        </div>
     }
 </section>
 
-@* ---------- 고장코드 ---------- *@
-<section class="panel">
-    <h2>고장코드 (DTC)</h2>
-    <div class="dtc-actions">
-        <button class="btn" @onclick="Vm.ReadDtcsAsync" disabled="@(!Vm.IsConnected || Vm.IsBusy)">조회</button>
-        <button class="btn danger" @onclick="Vm.ClearDtcsCommandAsync" disabled="@(!Vm.CanClearDtcs)">
-            @(Vm.ConfirmClear ? "정말 소거할까요? (다시 클릭)" : "소거")
+@* ══════════ 고장코드 ══════════ *@
+<div class="section-head">
+    <h2>고장코드 · DTC</h2>
+    <span class="head-actions">
+        <button class="btn sm" @onclick="Vm.ReadDtcsAsync" disabled="@(!Vm.IsConnected || Vm.IsBusy)">조회</button>
+        <button class="btn sm @(Vm.ConfirmClear ? "danger" : "")" @onclick="Vm.ClearDtcsCommandAsync" disabled="@(!Vm.CanClearDtcs)">
+            @(Vm.ConfirmClear ? "정말 소거 — 다시 클릭" : "소거")
         </button>
-    </div>
+    </span>
+</div>
+
+<section class="card">
     @if (Vm.Dtcs is null)
     {
-        <p class="hint">조회 버튼을 눌러 저장된 고장코드를 읽습니다.</p>
+        <p class="empty">조회 버튼을 눌러 저장된 고장코드를 읽습니다.</p>
     }
     else if (Vm.Dtcs.Count == 0)
     {
-        <p class="ok-text">저장된 고장코드가 없습니다. ✓</p>
+        <p class="empty status-good"><span class="dot"></span> 저장된 고장코드 없음</p>
     }
     else
     {
         <table class="dtc-table">
-            <thead><tr><th>코드</th><th>설명</th></tr></thead>
             <tbody>
                 @foreach (var dtc in Vm.Dtcs)
                 {
-                    <tr><td class="dtc-code">@dtc.Code</td><td>@dtc.Description</td></tr>
+                    <tr>
+                        <td class="dtc-status"><span class="dot serious"></span></td>
+                        <td class="dtc-code">@dtc.Code</td>
+                        <td class="dtc-desc">@dtc.Description</td>
+                    </tr>
                 }
             </tbody>
         </table>
     }
 </section>
 
-@* ---------- 통신 로그 ---------- *@
-<section class="panel">
-    <h2>통신 로그 <button class="btn tiny" @onclick="Vm.ClearLog">지우기</button></h2>
+@* ══════════ 통신 로그 ══════════ *@
+<details class="log-details">
+    <summary>
+        통신 로그 <span class="section-meta">@Vm.Log.Count건</span>
+        <button class="btn sm" @onclick="Vm.ClearLog" @onclick:stopPropagation>지우기</button>
+    </summary>
     <pre class="log">@string.Join("\n", Vm.Log.TakeLast(30))</pre>
-</section>
+</details>
 
 @code {
+    private enum MeterKind { None, Percent, Coolant, Fuel }
+    private readonly record struct TileDef(byte Pid, MeterKind Meter);
+
+    // 히어로(RPM, 0x0C) 제외 나머지 타일
+    private static readonly TileDef[] Tiles =
+    {
+        new(0x0D, MeterKind.None),     // 차속 — 스파크라인
+        new(0x05, MeterKind.Coolant),  // 냉각수온 — 심각도 미터
+        new(0x04, MeterKind.Percent),  // 부하
+        new(0x11, MeterKind.Percent),  // 스로틀
+        new(0x10, MeterKind.None),     // MAF — 스파크라인
+        new(0x2F, MeterKind.Fuel),     // 연료 — 미터 (낮으면 경고)
+        new(0x42, MeterKind.None),     // 전압 — 스파크라인
+    };
+
+    private string Fmt(byte pid)
+    {
+        var v = Vm.Snapshot?.Get(pid);
+        return v is null ? "—" : DashboardViewModel.FormatValue(pid, v.Value);
+    }
+
+    private (int pct, string cls) MeterState(TileDef t)
+    {
+        var v = Vm.Snapshot?.Get(t.Pid) ?? 0;
+        return t.Meter switch
+        {
+            MeterKind.Coolant => (Clamp((v + 40) / 170 * 100),          // -40~130°C 범위
+                                  v >= 115 ? "critical" : v >= 105 ? "warning" : ""),
+            MeterKind.Fuel => (Clamp(v), v < 15 ? "warning" : ""),
+            _ => (Clamp(v), ""),
+        };
+    }
+
+    private static int Clamp(double pct) => (int)Math.Clamp(pct, 0, 100);
+
+    // 스파크라인: 선은 muted, 현재값 점만 액센트 (dataviz 규격)
+    private MarkupString Spark(byte pid, int height)
+    {
+        var h = Vm.GetHistory(pid);
+        if (h is null || h.Count < 2)
+            return new MarkupString($"<svg class=\"spark\" style=\"height:{height}px\" viewBox=\"0 0 100 {height}\" preserveAspectRatio=\"none\"></svg>");
+
+        double min = h.Min(), max = h.Max();
+        var range = max - min;
+        if (range < 1e-9) range = 1;
+
+        var sb = new StringBuilder();
+        double lx = 0, ly = 0;
+        for (var i = 0; i < h.Count; i++)
+        {
+            lx = 3 + i * 94.0 / (h.Count - 1);
+            ly = height - 5 - (h[i] - min) / range * (height - 10);
+            sb.Append(lx.ToString("F1")).Append(',').Append(ly.ToString("F1")).Append(' ');
+        }
+
+        return new MarkupString(
+            $"<svg class=\"spark\" style=\"height:{height}px\" viewBox=\"0 0 100 {height}\" preserveAspectRatio=\"none\">" +
+            $"<polyline points=\"{sb}\" fill=\"none\" stroke=\"var(--ink-3)\" stroke-width=\"2\" " +
+            "stroke-linejoin=\"round\" stroke-linecap=\"round\" vector-effect=\"non-scaling-stroke\"/>" +
+            $"<circle cx=\"{lx:F1}\" cy=\"{ly:F1}\" r=\"4\" fill=\"var(--accent)\" stroke=\"var(--surface)\" stroke-width=\"2\"/>" +
+            "</svg>");
+    }
+
+    private string ConnectLabel => Vm.Kind switch
+    {
+        TransportKind.Ble => "동글 연결",
+        TransportKind.WebSocket => "보드 연결",
+        _ => "시뮬레이터 시작",
+    };
+
+    private void OnKindChanged(ChangeEventArgs e)
+    {
+        if (Enum.TryParse<TransportKind>(e.Value?.ToString(), out var kind))
+            Vm.Kind = kind;
+    }
+
     protected override void OnInitialized() =>
         Vm.PropertyChanged += OnVmPropertyChanged;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && !Vm.AutoDetected)
+        {
+            // 기기 능력 감지: Web Bluetooth 지원 여부로 기본 연결 방식 결정
+            var hasBle = await JS.InvokeAsync<bool>("obdEnv.hasBle");
+            Vm.ApplyAutoDetect(hasBle);
+        }
+    }
 
     private void OnVmPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e) =>
         InvokeAsync(StateHasChanged);

@@ -1,33 +1,68 @@
-html, body {
-    margin: 0;
-    font-family: 'Pretendard', 'Malgun Gothic', 'Helvetica Neue', Arial, sans-serif;
-    background: #12151c;
-    color: #e8eaf0;
+/* ============================================================
+   디자인 토큰 — 검증된 다크 팔레트 (dataviz reference palette)
+   ============================================================ */
+:root {
+    color-scheme: dark;
+
+    /* 표면 */
+    --page:    #0d0d0d;   /* 페이지 플레인 */
+    --surface: #1a1a19;   /* 카드/차트 표면 */
+    --inset:   #141413;   /* 표면 안의 한 단계 깊은 영역 (로그, 입력) */
+
+    /* 잉크 */
+    --ink:   #ffffff;     /* 주 텍스트 */
+    --ink-2: #c3c2b7;     /* 보조 텍스트 */
+    --ink-3: #898781;     /* 라벨/축 (muted) */
+
+    /* 크롬 */
+    --grid: #2c2c2a;      /* 헤어라인 */
+    --axis: #383835;
+    --ring: rgba(255, 255, 255, 0.10);
+
+    /* 데이터 액센트 (시리즈 1, 다크 스텝) */
+    --accent:      #3987e5;
+    --accent-deep: #104281;  /* 미터 트랙: 같은 램프의 어두운 스텝 */
+
+    /* 상태 (고정 팔레트 — 시리즈로 재사용 금지) */
+    --good:    #0ca30c;
+    --warning: #fab219;
+    --serious: #ec835a;
+    --critical:#d03b3b;
+
+    /* 타이포 */
+    --font: system-ui, -apple-system, "Segoe UI", "Malgun Gothic", sans-serif;
+    --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
 }
 
-h1:focus, h2:focus {
-    outline: none;
+html, body {
+    margin: 0;
+    font-family: var(--font);
+    background: var(--page);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
 }
+
+h1:focus, h2:focus { outline: none; }
 
 /* ---- 초기 로딩 화면 ---- */
 .loading-progress {
     position: relative;
     display: block;
-    width: 8rem;
-    height: 8rem;
-    margin: 20vh auto 1rem;
+    width: 7rem;
+    height: 7rem;
+    margin: 22vh auto 1rem;
 }
 
 .loading-progress circle {
     fill: none;
-    stroke: #2a3040;
-    stroke-width: 0.6rem;
+    stroke: var(--grid);
+    stroke-width: 0.5rem;
     transform-origin: 50% 50%;
     transform: rotate(-90deg);
 }
 
 .loading-progress circle:last-child {
-    stroke: #2f6fed;
+    stroke: var(--accent);
     stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
     transition: stroke-dasharray 0.05s ease-in-out;
 }
@@ -35,7 +70,7 @@ h1:focus, h2:focus {
 .loading-progress-text {
     text-align: center;
     font-weight: 600;
-    color: #8a93a6;
+    color: var(--ink-3);
 }
 
 .loading-progress-text:after {
@@ -44,27 +79,17 @@ h1:focus, h2:focus {
 
 /* ---- 전역 오류 배너 ---- */
 #blazor-error-ui {
-    background: #b33939;
+    background: var(--critical);
     color: #fff;
     bottom: 0;
     box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.4);
     display: none;
     left: 0;
-    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    padding: 0.6rem 1.25rem;
     position: fixed;
     width: 100%;
     z-index: 1000;
 }
 
-#blazor-error-ui .reload {
-    color: #fff;
-    text-decoration: underline;
-}
-
-#blazor-error-ui .dismiss {
-    cursor: pointer;
-    position: absolute;
-    right: 0.75rem;
-    top: 0.5rem;
-    color: #fff;
-}
+#blazor-error-ui .reload { color: #fff; text-decoration: underline; }
+#blazor-error-ui .dismiss { cursor: pointer; position: absolute; right: 0.75rem; top: 0.5rem; color: #fff; }
