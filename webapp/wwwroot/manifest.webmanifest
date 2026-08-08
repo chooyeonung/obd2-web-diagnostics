@@ -1,0 +1,22 @@
+{
+  "name": "OBD-II 웹 진단",
+  "short_name": "OBD 진단",
+  "id": "./",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#12151c",
+  "theme_color": "#1a1f2b",
+  "description": "vLinker/ELM327 BLE 동글로 차량을 진단하는 웹앱",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
