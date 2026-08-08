@@ -14,6 +14,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddSingleton<ObdService>();
 builder.Services.AddSingleton<SimulatorTransport>();
 builder.Services.AddSingleton<BleTransport>();
+builder.Services.AddSingleton<WebSocketTransport>();
 
 // ViewModel 계층
 builder.Services.AddSingleton<DashboardViewModel>();

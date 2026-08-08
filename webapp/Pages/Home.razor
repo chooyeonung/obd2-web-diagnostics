@@ -9,10 +9,16 @@
 @* ---------- 연결 패널 ---------- *@
 <section class="panel">
     <div class="connect-row">
-        <label><input type="radio" name="tp" checked="@(Vm.UseSimulator)"
-                      @onchange="@(() => Vm.UseSimulator = true)" disabled="@Vm.IsConnected" /> 시뮬레이터 (가상 ECU)</label>
-        <label><input type="radio" name="tp" checked="@(!Vm.UseSimulator)"
-                      @onchange="@(() => Vm.UseSimulator = false)" disabled="@Vm.IsConnected" /> vLinker / ELM327 (BLE)</label>
+        <label><input type="radio" name="tp" checked="@(Vm.Kind == TransportKind.Simulator)"
+                      @onchange="@(() => Vm.Kind = TransportKind.Simulator)" disabled="@Vm.IsConnected" /> 시뮬레이터 (가상 ECU)</label>
+        <label><input type="radio" name="tp" checked="@(Vm.Kind == TransportKind.Ble)"
+                      @onchange="@(() => Vm.Kind = TransportKind.Ble)" disabled="@Vm.IsConnected" /> vLinker / ELM327 (BLE)</label>
+        <label><input type="radio" name="tp" checked="@(Vm.Kind == TransportKind.WebSocket)"
+                      @onchange="@(() => Vm.Kind = TransportKind.WebSocket)" disabled="@Vm.IsConnected" /> 자작 보드 (WiFi/WebSocket)</label>
+        @if (Vm.Kind == TransportKind.WebSocket && !Vm.IsConnected)
+        {
+            <input class="ws-url" @bind="Vm.WsUrl" placeholder="ws://192.168.4.1/ws" />
+        }
 
         @if (!Vm.IsConnected)
         {

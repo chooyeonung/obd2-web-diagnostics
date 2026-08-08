@@ -23,6 +23,17 @@
 
 .connect-row label { cursor: pointer; }
 
+.ws-url {
+    background: #12151c;
+    border: 1px solid #2a3040;
+    color: #e8eaf0;
+    border-radius: 6px;
+    padding: 0.3rem 0.55rem;
+    font-family: monospace;
+    font-size: 0.8rem;
+    min-width: 180px;
+}
+
 .btn {
     background: #2a3040;
     color: #e8eaf0;

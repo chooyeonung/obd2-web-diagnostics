@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OBD2-DIAG 콘솔</title>
+<style>
+  body { font-family: monospace; background:#12151c; color:#e8eaf0; margin:0; padding:1rem; }
+  h1 { font-size:1rem; color:#8a93a6; }
+  #log { background:#0d0f14; border-radius:6px; padding:.6rem; height:60vh; overflow-y:auto; white-space:pre-wrap; font-size:.8rem; }
+  .row { display:flex; gap:.5rem; margin-top:.6rem; }
+  input { flex:1; background:#1a1f2b; border:1px solid #2a3040; color:#e8eaf0; border-radius:6px; padding:.5rem; }
+  button { background:#2f6fed; color:#fff; border:none; border-radius:6px; padding:.5rem 1rem; }
+  .quick { margin-top:.5rem; display:flex; gap:.4rem; flex-wrap:wrap; }
+  .quick button { background:#2a3040; font-size:.75rem; padding:.3rem .6rem; }
+</style>
+</head>
+<body>
+<h1>OBD2-DIAG 테스트 콘솔 <span id="st">● 연결 안 됨</span></h1>
+<div id="log"></div>
+<div class="row">
+  <input id="cmd" placeholder="명령 입력 (예: ATZ, 010C)" />
+  <button onclick="send()">전송</button>
+</div>
+<div class="quick">
+  <button onclick="sendCmd('ATZ')">ATZ</button>
+  <button onclick="sendCmd('ATE0')">ATE0</button>
+  <button onclick="sendCmd('010C')">RPM</button>
+  <button onclick="sendCmd('010D')">차속</button>
+  <button onclick="sendCmd('0105')">냉각수온</button>
+  <button onclick="sendCmd('03')">DTC 조회</button>
+  <button onclick="sendCmd('0902')">VIN</button>
+</div>
+<script>
+// 이 페이지는 펌웨어 벤치 테스트용 미니 콘솔입니다.
+// 본 웹앱(Blazor)은 WebSocketTransport로 ws://192.168.4.1/ws 에 연결하세요.
+const log = (s) => { const el = document.getElementById('log'); el.textContent += s + "\n"; el.scrollTop = el.scrollHeight; };
+let ws = new WebSocket(`ws://${location.host}/ws`);
+ws.onopen = () => document.getElementById('st').textContent = '● 연결됨';
+ws.onclose = () => document.getElementById('st').textContent = '● 끊어짐';
+ws.onmessage = (e) => log(e.data.replace(/\r/g, '\n').replace(/>/g, ''));
+function sendCmd(c) { log('> ' + c); ws.send(c + '\r'); }
+function send() { const i = document.getElementById('cmd'); if (i.value) { sendCmd(i.value); i.value = ''; } }
+document.getElementById('cmd').addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
+</script>
+</body>
+</html>

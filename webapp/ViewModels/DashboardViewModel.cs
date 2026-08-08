@@ -5,6 +5,14 @@ using ObdWebApp.Services;
 
 namespace ObdWebApp.ViewModels;
 
+/// <summary>연결 대상 종류.</summary>
+public enum TransportKind
+{
+    Simulator,   // 가상 ECU
+    Ble,         // vLinker/ELM327 동글 (Web Bluetooth)
+    WebSocket,   // 자작 ESP32 보드 (WiFi 게이트웨이)
+}
+
 /// <summary>
 /// 대시보드 화면의 ViewModel. 화면 상태와 동작(연결/폴링/DTC)을 모두 소유하고,
 /// 뷰(Home.razor)는 이 클래스에 바인딩만 한다. WPF의 MVVM과 동일한 책임 분리.
@@ -14,15 +22,17 @@ public sealed class DashboardViewModel : INotifyPropertyChanged, IAsyncDisposabl
     private readonly ObdService _obd;
     private readonly SimulatorTransport _simulator;
     private readonly BleTransport _ble;
+    private readonly WebSocketTransport _ws;
     private CancellationTokenSource? _pollCts;
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    public DashboardViewModel(ObdService obd, SimulatorTransport simulator, BleTransport ble)
+    public DashboardViewModel(ObdService obd, SimulatorTransport simulator, BleTransport ble, WebSocketTransport ws)
     {
         _obd = obd;
         _simulator = simulator;
         _ble = ble;
+        _ws = ws;
         _obd.CommandLogged += OnCommandLogged;
         _obd.Disconnected += OnTransportDisconnected;
     }
@@ -34,8 +44,12 @@ public sealed class DashboardViewModel : INotifyPropertyChanged, IAsyncDisposabl
 
     // ---------- 바인딩 속성 ----------
 
-    private bool _useSimulator = true;
-    public bool UseSimulator { get => _useSimulator; set => SetField(ref _useSimulator, value); }
+    private TransportKind _kind = TransportKind.Simulator;
+    public TransportKind Kind { get => _kind; set => SetField(ref _kind, value); }
+
+    /// <summary>자작 보드 WebSocket 주소 (ESP32 SoftAP 기본값).</summary>
+    private string _wsUrl = "ws://192.168.4.1/ws";
+    public string WsUrl { get => _wsUrl; set => SetField(ref _wsUrl, value); }
 
     private bool _isConnected;
     public bool IsConnected { get => _isConnected; private set => SetField(ref _isConnected, value); }
@@ -72,7 +86,14 @@ public sealed class DashboardViewModel : INotifyPropertyChanged, IAsyncDisposabl
         IsBusy = true; Error = null;
         try
         {
-            IObdTransport transport = UseSimulator ? _simulator : _ble;
+            IObdTransport transport = Kind switch
+            {
+                TransportKind.Ble => _ble,
+                TransportKind.WebSocket => _ws,
+                _ => _simulator,
+            };
+            if (Kind == TransportKind.WebSocket) _ws.Url = WsUrl;
+
             await _obd.ConnectAsync(transport);
             IsConnected = true;
             Vin = await _obd.ReadVinAsync();
