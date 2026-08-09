@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 720" font-family="'Segoe UI', 'Malgun Gothic', sans-serif">
+  <defs>
+    <style>
+      .board { fill: #14532d; stroke: #0d3b20; stroke-width: 3; }
+      .mod { fill: rgba(255,255,255,0.94); stroke: #1a1a19; stroke-width: 1.6; }
+      .name { font-size: 13px; font-weight: 700; fill: #1a1a19; }
+      .pin { font-size: 10px; fill: #1a1a19; }
+      .lbl { font-size: 10.5px; fill: #ffffff; font-weight: 700; }
+      .note { font-size: 11px; fill: #52514e; }
+      .warn { font-size: 11px; font-weight: 700; fill: #c0392b; }
+      .pad { fill: #d4af37; stroke: #8a6d1a; stroke-width: 1; }
+      .th { font-size: 11px; font-weight: 700; fill: #1a1a19; }
+      .td { font-size: 11.5px; fill: #1a1a19; }
+      .row { stroke: #e1e0d9; stroke-width: 1; }
+    </style>
+    <pattern id="holes" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="8" r="2.1" fill="#0d3b20"/>
+    </pattern>
+  </defs>
+
+  <rect width="1180" height="720" fill="#ffffff"/>
+  <text x="40" y="40" font-size="19" font-weight="800" fill="#1a1a19">만능기판 배치도 + 배선표 — 6×8cm 양면 (VLT-PCB008) · 윗면 기준</text>
+  <text x="40" y="61" class="note">모듈 3개는 암핀헤더 소켓으로 탑재 · 배선은 뒷면 단선(AWG24) · 연결 정의는 schematic-bench.svg 기준</text>
+
+  <!-- ═══════════ 좌: 배치도 ═══════════ -->
+  <g transform="translate(40,90)">
+    <rect x="0" y="0" width="560" height="420" rx="10" class="board"/>
+    <rect x="12" y="12" width="536" height="396" fill="url(#holes)" opacity="0.75"/>
+    <circle cx="18" cy="18" r="6" fill="#0d3b20"/><circle cx="542" cy="18" r="6" fill="#0d3b20"/>
+    <circle cx="18" cy="402" r="6" fill="#0d3b20"/><circle cx="542" cy="402" r="6" fill="#0d3b20"/>
+
+    <!-- ESP32 devkit -->
+    <rect x="50" y="26" width="440" height="170" rx="8" class="mod"/>
+    <text x="270" y="60" text-anchor="middle" class="name">① ESP32-S3 개발보드 (VND018)</text>
+    <text x="270" y="77" text-anchor="middle" class="pin">USB-C가 왼쪽 기판 밖을 향하게 · 암핀헤더 2줄</text>
+    <rect x="34" y="80" width="20" height="52" rx="4" fill="#c3c2b7" stroke="#52514e"/>
+    <text x="44" y="148" text-anchor="middle" class="pin">USB</text>
+    <circle cx="105" cy="184" r="6" class="pad"/><text x="105" y="212" text-anchor="middle" class="lbl">5V</text>
+    <circle cx="145" cy="184" r="6" class="pad"/><text x="145" y="212" text-anchor="middle" class="lbl">GND</text>
+    <circle cx="330" cy="184" r="6" class="pad"/><text x="330" y="212" text-anchor="middle" class="lbl">3V3</text>
+    <circle cx="385" cy="184" r="6" class="pad"/><text x="385" y="212" text-anchor="middle" class="lbl">IO4</text>
+    <circle cx="435" cy="184" r="6" class="pad"/><text x="435" y="212" text-anchor="middle" class="lbl">IO5</text>
+
+    <!-- LM2596 -->
+    <rect x="34" y="240" width="240" height="130" rx="8" class="mod"/>
+    <text x="154" y="272" text-anchor="middle" class="name">② LM2596</text>
+    <text x="154" y="288" text-anchor="middle" class="pin">트리머 위쪽 (조정 접근)</text>
+    <circle cx="52" cy="318" r="6" class="pad"/><text x="66" y="322" class="pin">IN+</text>
+    <circle cx="52" cy="348" r="6" class="pad"/><text x="66" y="352" class="pin">IN−</text>
+    <circle cx="256" cy="318" r="6" class="pad"/><text x="242" y="322" text-anchor="end" class="pin">OUT+</text>
+    <circle cx="256" cy="348" r="6" class="pad"/><text x="242" y="352" text-anchor="end" class="pin">OUT−</text>
+
+    <!-- SN65HVD230 -->
+    <rect x="310" y="240" width="110" height="150" rx="8" class="mod"/>
+    <text x="365" y="264" text-anchor="middle" class="name" font-size="11.5">③ SN65HVD230</text>
+    <text x="365" y="280" text-anchor="middle" class="warn" font-size="9.5">R2(120Ω) 제거!</text>
+    <circle cx="326" cy="302" r="6" class="pad"/><text x="340" y="306" class="pin">3V3</text>
+    <circle cx="326" cy="326" r="6" class="pad"/><text x="340" y="330" class="pin">GND</text>
+    <circle cx="326" cy="350" r="6" class="pad"/><text x="340" y="354" class="pin">D</text>
+    <circle cx="326" cy="374" r="6" class="pad"/><text x="340" y="378" class="pin">R</text>
+    <circle cx="404" cy="326" r="6" class="pad"/><text x="390" y="315" text-anchor="end" class="pin">CANH</text>
+    <circle cx="404" cy="354" r="6" class="pad"/><text x="390" y="343" text-anchor="end" class="pin">CANL</text>
+
+    <!-- 보호소자 -->
+    <rect x="446" y="240" width="80" height="150" rx="8" fill="rgba(255,255,255,0.88)" stroke="#1a1a19" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <text x="486" y="262" text-anchor="middle" class="name" font-size="11">④ 보호소자</text>
+    <circle cx="462" cy="286" r="5.5" class="pad"/><circle cx="510" cy="286" r="5.5" class="pad"/>
+    <text x="486" y="304" text-anchor="middle" class="pin">폴리스위치</text>
+    <circle cx="462" cy="318" r="5.5" class="pad"/><circle cx="510" cy="318" r="5.5" class="pad"/>
+    <text x="486" y="336" text-anchor="middle" class="pin">SS34 ▶| 좌→우</text>
+    <circle cx="462" cy="350" r="5.5" class="pad"/><circle cx="510" cy="350" r="5.5" class="pad"/>
+    <text x="486" y="368" text-anchor="middle" class="pin">P6KE24A</text>
+    <text x="486" y="382" text-anchor="middle" class="pin" font-size="8.5">(밴드 왼쪽 = + 노드)</text>
+
+    <!-- 하네스 패드 (하단 가장자리) -->
+    <circle cx="452" cy="404" r="7" class="pad"/><text x="452" y="392" text-anchor="middle" class="lbl">12V</text>
+    <circle cx="482" cy="404" r="7" class="pad"/><text x="482" y="392" text-anchor="middle" class="lbl">G</text>
+    <circle cx="512" cy="404" r="7" class="pad"/><text x="512" y="392" text-anchor="middle" class="lbl">H</text>
+    <circle cx="542" cy="404" r="7" class="pad"/><text x="542" y="392" text-anchor="middle" class="lbl">L</text>
+  </g>
+  <text x="470" y="540" class="note">↓ 하단 패드 4개 → OBD-II 커넥터 하네스 (CAN-H/L 꼬아서, 30~50cm)</text>
+
+  <!-- ═══════════ 우: 배선표 ═══════════ -->
+  <g transform="translate(640,90)">
+    <text x="0" y="0" class="name" font-size="14">배선표 (뒷면 단선 · 이 순서대로)</text>
+
+    <!-- 헤더 -->
+    <text x="0"   y="28" class="th">#</text>
+    <text x="26"  y="28" class="th">네트</text>
+    <text x="120" y="28" class="th">시작</text>
+    <text x="300" y="28" class="th">끝</text>
+    <line x1="0" y1="36" x2="500" y2="36" stroke="#1a1a19" stroke-width="1.4"/>
+
+    <!-- 행 -->
+    <g class="td">
+      <text x="0" y="56">1</text><rect x="24" y="46" width="12" height="12" fill="#111"/><text x="42" y="56">GND</text><text x="120" y="56">하네스 G</text><text x="300" y="56">LM2596 IN−</text>
+      <line x1="0" y1="64" x2="500" y2="64" class="row"/>
+      <text x="0" y="82">2</text><rect x="24" y="72" width="12" height="12" fill="#111"/><text x="42" y="82">GND</text><text x="120" y="82">LM2596 OUT−</text><text x="300" y="82">ESP32 GND</text>
+      <line x1="0" y1="90" x2="500" y2="90" class="row"/>
+      <text x="0" y="108">3</text><rect x="24" y="98" width="12" height="12" fill="#111"/><text x="42" y="108">GND</text><text x="120" y="108">ESP32 GND</text><text x="300" y="108">트랜시버 GND</text>
+      <line x1="0" y1="116" x2="500" y2="116" class="row"/>
+      <text x="0" y="134">4</text><rect x="24" y="124" width="12" height="12" fill="#111"/><text x="42" y="134">GND</text><text x="120" y="134">LM2596 IN−</text><text x="300" y="134">P6KE24A 우측 리드</text>
+      <line x1="0" y1="142" x2="500" y2="142" class="row"/>
+
+      <text x="0" y="160">5</text><rect x="24" y="150" width="12" height="12" fill="#e74c3c"/><text x="42" y="160">+12V</text><text x="120" y="160">하네스 12V</text><text x="300" y="160">폴리스위치 좌측</text>
+      <line x1="0" y1="168" x2="500" y2="168" class="row"/>
+      <text x="0" y="186">6</text><rect x="24" y="176" width="12" height="12" fill="#e74c3c"/><text x="42" y="186">+12V</text><text x="120" y="186">폴리스위치 우측</text><text x="300" y="186">SS34 좌측(애노드)</text>
+      <line x1="0" y1="194" x2="500" y2="194" class="row"/>
+      <text x="0" y="212">7</text><rect x="24" y="202" width="12" height="12" fill="#e74c3c"/><text x="42" y="212">+12V</text><text x="120" y="212">SS34 우측(밴드)</text><text x="300" y="212">P6KE24A 좌측(밴드)</text>
+      <line x1="0" y1="220" x2="500" y2="220" class="row"/>
+      <text x="0" y="238">8</text><rect x="24" y="228" width="12" height="12" fill="#e74c3c"/><text x="42" y="238">+12V</text><text x="120" y="238">P6KE24A 좌측(밴드)</text><text x="300" y="238">LM2596 IN+</text>
+      <line x1="0" y1="246" x2="500" y2="246" class="row"/>
+
+      <text x="0" y="264">9</text><rect x="24" y="254" width="12" height="12" fill="#e67e22"/><text x="42" y="264">+5V</text><text x="120" y="264">LM2596 OUT+</text><text x="300" y="264">ESP32 5V ★</text>
+      <line x1="0" y1="272" x2="500" y2="272" class="row"/>
+      <text x="0" y="290">10</text><rect x="24" y="280" width="12" height="12" fill="#f1c40f"/><text x="42" y="290">3V3</text><text x="120" y="290">ESP32 3V3</text><text x="300" y="290">트랜시버 3V3</text>
+      <line x1="0" y1="298" x2="500" y2="298" class="row"/>
+
+      <text x="0" y="316">11</text><rect x="24" y="306" width="12" height="12" fill="#9b59b6"/><text x="42" y="316">TX</text><text x="120" y="316">ESP32 IO4</text><text x="300" y="316">트랜시버 D</text>
+      <line x1="0" y1="324" x2="500" y2="324" class="row"/>
+      <text x="0" y="342">12</text><rect x="24" y="332" width="12" height="12" fill="#9b59b6"/><text x="42" y="342">RX</text><text x="120" y="342">ESP32 IO5</text><text x="300" y="342">트랜시버 R</text>
+      <line x1="0" y1="350" x2="500" y2="350" class="row"/>
+
+      <text x="0" y="368">13</text><rect x="24" y="358" width="12" height="12" fill="#3498db"/><text x="42" y="368">CAN-H</text><text x="120" y="368">하네스 H</text><text x="300" y="368">트랜시버 CANH</text>
+      <line x1="0" y1="376" x2="500" y2="376" class="row"/>
+      <text x="0" y="394">14</text><rect x="24" y="384" width="12" height="12" fill="#3498db"/><text x="42" y="394">CAN-L</text><text x="120" y="394">하네스 L</text><text x="300" y="394">트랜시버 CANL</text>
+      <line x1="0" y1="402" x2="500" y2="402" class="row"/>
+    </g>
+
+    <text x="0" y="432" class="warn">★ 9번은 마지막에! — 1~8번 완료 후 12V 인가, LM2596 OUT+에서 5.0V 확인한 다음 연결</text>
+  </g>
+
+  <!-- ═══════════ 하단 노트 ═══════════ -->
+  <g transform="translate(40,580)">
+    <rect x="0" y="0" width="1100" height="108" fill="#f9f9f7" stroke="#c3c2b7"/>
+    <text x="16" y="24" class="note" font-weight="700">작업 순서</text>
+    <text x="16" y="44" class="note">① 암핀헤더 소켓 3세트 + 보호소자 + 하네스 패드를 배치도 위치에 납땜 (모듈은 아직 꽂지 않음)   ② 배선표 1→14 순서로 뒷면 배선 (9번 제외)</text>
+    <text x="16" y="64" class="note">③ 12V 인가 → LM2596 소켓 자리 OUT+ 5.0V 조정·확인 → 전원 차단   ④ 9번 배선 → 모듈 3개 꽂기 → bench-test.md 2단계부터 진행</text>
+    <text x="16" y="90" class="warn">SS34는 SMD(SMA)라 리드선을 덧대 직립 실장 · 다이오드 2개 밴드 방향 재확인 · USB와 5V 하네스 동시 인가 금지</text>
+  </g>
+</svg>
