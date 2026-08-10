@@ -6662,7 +6662,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "Q_PMOS_GDS"
+		(property "Value" "SUD50P06-15-GE3"
 			(at 0 -4.5 0)
 			(layer "B.Fab")
 			(uuid "78af2e7c-b2f8-4f68-8c8d-9c38c7db0a22")
@@ -9753,7 +9753,7 @@
 		)
 		(polygon
 			(pts
-				(xy 55 88) (xy 119 88) (xy 119 124) (xy 55 124)
+				(xy 55 88) (xy 119 88) (xy 119 124) (xy 55 124) (xy 55 119) (xy 60 119) (xy 60 92) (xy 55 92)
 			)
 		)
 	)
@@ -9775,7 +9775,7 @@
 		)
 		(polygon
 			(pts
-				(xy 55 88) (xy 119 88) (xy 119 124) (xy 55 124)
+				(xy 55 88) (xy 119 88) (xy 119 124) (xy 55 124) (xy 55 119) (xy 60 119) (xy 60 92) (xy 55 92)
 			)
 		)
 	)

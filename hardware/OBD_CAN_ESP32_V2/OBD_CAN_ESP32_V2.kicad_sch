@@ -3696,6 +3696,12 @@
 		(uuid "cde79491-a5b1-48b7-ba9e-0aa85f21b2ce")
 	)
 	(junction
+		(at 287.02 50.8)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f448d392-fb2b-4a57-a0c3-d2a43353b652")
+	)
+	(junction
 		(at 289.56 78.74)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3889,7 +3895,6 @@
 		)
 		(uuid "0770267c-0434-4226-bdc2-f7ff282fd770")
 	)
-	
 	(wire
 		(pts
 			(xy 284.48 58.42) (xy 284.48 78.74)
@@ -3960,7 +3965,6 @@
 		)
 		(uuid "26a21256-481b-4c98-a220-7a9d2b941de2")
 	)
-	
 	(wire
 		(pts
 			(xy 118.11 139.7) (xy 132.08 139.7)
@@ -4071,7 +4075,6 @@
 		)
 		(uuid "5255f465-b4df-4282-85cd-19f4121e47ac")
 	)
-	
 	(wire
 		(pts
 			(xy 279.4 50.8) (xy 299.72 50.8)
@@ -4182,7 +4185,6 @@
 		)
 		(uuid "82752e30-87f3-4f73-b49a-b6468019d0cb")
 	)
-	
 	(wire
 		(pts
 			(xy 29.21 163.83) (xy 33.02 163.83)
@@ -4763,7 +4765,6 @@
 		)
 		(uuid "75824ee5-11de-46f4-83d9-3417e9a3ae71")
 	)
-	
 	(label "+3V3"
 		(at 107.95 119.38 0)
 		(effects
@@ -4864,7 +4865,6 @@
 		)
 		(uuid "a7b8440c-2e87-448e-a540-194db357a111")
 	)
-	
 	(label "SIGNAL_GND"
 		(at 107.95 160.02 0)
 		(effects
@@ -4915,7 +4915,6 @@
 		)
 		(uuid "c5552689-4b63-45ef-a7be-4c95ac61d486")
 	)
-	
 	(label "CAN_H"
 		(at 217.17 142.24 0)
 		(effects
@@ -4966,7 +4965,6 @@
 		)
 		(uuid "e1d19824-4f9d-4cac-93a7-f530d9a90e50")
 	)
-	
 	(label "+3V3"
 		(at 33.02 163.83 0)
 		(effects
@@ -5409,6 +5407,85 @@
 			(project "OBD_CAN_ESP32_V2"
 				(path "/d818bd00-b54e-48fd-8a08-8c2bd25151ea"
 					(reference "J1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 287.02 50.8 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4172c03d-1432-466d-84e3-76bf00e991fd")
+		(property "Reference" "#FLG03"
+			(at 287.02 48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 287.02 48 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 287.02 48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 287.02 48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 287.02 48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "2ee3c6d5-2aab-4d27-b57c-2efdbea59370")
+		)
+		(instances
+			(project "OBD_CAN_ESP32_V2"
+				(path "/d818bd00-b54e-48fd-8a08-8c2bd25151ea"
+					(reference "#FLG03")
 					(unit 1)
 				)
 			)
@@ -7442,7 +7519,7 @@
 				)
 			)
 		)
-		(property "Value" "Q_PMOS_GDS"
+		(property "Value" "SUD50P06-15-GE3"
 			(at 144.78 57.15 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8117,92 +8194,7 @@
 			)
 		)
 	)
-	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 287.02 50.8 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "4172c03d-1432-466d-84e3-76bf00e991fd")
-		(property "Reference" "#FLG03"
-			(at 287.02 48 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 287.02 48 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 287.02 48 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 287.02 48 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 287.02 48 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "2ee3c6d5-2aab-4d27-b57c-2efdbea59370")
-		)
-		(instances
-			(project "OBD_CAN_ESP32_V2"
-				(path "/d818bd00-b54e-48fd-8a08-8c2bd25151ea"
-					(reference "#FLG03")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(junction
-		(at 287.02 50.8)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "f448d392-fb2b-4a57-a0c3-d2a43353b652")
-	)
-(sheet_instances
+	(sheet_instances
 		(path "/"
 			(page "1")
 		)
