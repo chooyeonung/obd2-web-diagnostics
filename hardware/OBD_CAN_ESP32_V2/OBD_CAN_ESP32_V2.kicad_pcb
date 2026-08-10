@@ -2090,7 +2090,7 @@
 	(footprint "MountingHole:MountingHole_2.7mm_M2.5"
 		(layer "F.Cu")
 		(uuid "4c86241e-b6ec-4278-b61a-6235c14de376")
-		(at 57 92.3)
+		(at 58 89.6)
 		(property "Reference" "H1"
 			(at 0 -3 0)
 			(layer "F.SilkS")
@@ -2151,7 +2151,7 @@
 	(footprint "MountingHole:MountingHole_2.7mm_M2.5"
 		(layer "F.Cu")
 		(uuid "53d3cd36-f117-483f-bacc-31d9f7145c37")
-		(at 117 119.7)
+		(at 116 122.4)
 		(property "Reference" "H4"
 			(at 0 -3 0)
 			(layer "F.SilkS")
@@ -2992,7 +2992,7 @@
 	(footprint "MountingHole:MountingHole_2.7mm_M2.5"
 		(layer "F.Cu")
 		(uuid "66a14b17-9f58-4cb0-818f-e616d242688d")
-		(at 117 92.3)
+		(at 116 89.6)
 		(property "Reference" "H2"
 			(at 0 -3 0)
 			(layer "F.SilkS")
@@ -3685,7 +3685,7 @@
 	(footprint "MountingHole:MountingHole_2.7mm_M2.5"
 		(layer "F.Cu")
 		(uuid "aab6e390-9b75-41d7-b6e3-1ce44da4a544")
-		(at 57 119.7)
+		(at 58 122.4)
 		(property "Reference" "H3"
 			(at 0 -3 0)
 			(layer "F.SilkS")
@@ -7733,8 +7733,8 @@
 		(embedded_fonts no)
 	)
 	(gr_rect
-		(start 55 90.5)
-		(end 119 121.5)
+		(start 55 88)
+		(end 119 124)
 		(stroke
 			(width 0.15)
 			(type default)
@@ -7760,7 +7760,7 @@
 		)
 		(polygon
 			(pts
-				(xy 55 90.5) (xy 119 90.5) (xy 119 121.5) (xy 55 121.5)
+				(xy 55 88) (xy 119 88) (xy 119 124) (xy 55 124)
 			)
 		)
 		(filled_polygon
@@ -9000,7 +9000,7 @@
 		)
 		(polygon
 			(pts
-				(xy 55 90.5) (xy 119 90.5) (xy 119 121.5) (xy 55 121.5)
+				(xy 55 88) (xy 119 88) (xy 119 124) (xy 55 124)
 			)
 		)
 		(filled_polygon
