@@ -83,8 +83,8 @@
   <text x="1000" y="222" text-anchor="middle" class="pin">N16R8 · VND018</text>
   <text x="888" y="244" class="pin">5V (VIN)</text>
   <text x="888" y="384" class="pin">3V3</text>
-  <text x="888" y="414" class="pin">GPIO4 (TWAI TX)</text>
-  <text x="888" y="444" class="pin">GPIO5 (TWAI RX)</text>
+  <text x="888" y="414" class="pin">GPIO17 (TWAI TX)</text>
+  <text x="888" y="444" class="pin">GPIO18 (TWAI RX)</text>
   <text x="1000" y="470" text-anchor="middle" class="pin">GND</text>
   <text x="1000" y="300" text-anchor="middle" class="note">USB-C: 펌웨어 플래시용</text>
   <text x="1000" y="316" text-anchor="middle" class="warn">USB와 VIN 동시 인가 금지</text>

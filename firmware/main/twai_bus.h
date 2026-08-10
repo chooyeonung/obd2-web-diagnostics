@@ -3,8 +3,8 @@
 #include "esp_err.h"
 
 // SN65HVD230 결선 (README 결선도와 일치)
-#define TWAI_TX_GPIO 4   // → SN65HVD230 D(CTX)
-#define TWAI_RX_GPIO 5   // → SN65HVD230 R(CRX)
+#define TWAI_TX_GPIO 17  // → SN65HVD230 D(CTX) — DevKitC-1 J3 핀10
+#define TWAI_RX_GPIO 18  // → SN65HVD230 R(CRX) — DevKitC-1 J3 핀11
 
 typedef struct {
     uint32_t id;        // 11bit CAN ID

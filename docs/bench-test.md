@@ -45,8 +45,8 @@
 ## 4단계 — CAN 트랜시버 결선
 
 ```
-ESP32 GPIO4 → SN65HVD230 D    ESP32 3V3 → VCC
-ESP32 GPIO5 → SN65HVD230 R    ESP32 GND → GND
+ESP32 GPIO17 → SN65HVD230 D    ESP32 3V3 → VCC
+ESP32 GPIO18 → SN65HVD230 R    ESP32 GND → GND
 ```
 
 - [ ] 3V3 전압 확인, 콘솔 `ATZ` 재확인 (트랜시버 연결 후에도 부팅 정상)

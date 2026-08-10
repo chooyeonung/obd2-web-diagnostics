@@ -9,8 +9,8 @@
 
 | ESP32-S3 (VND018) | 연결 대상 |
 |---|---|
-| GPIO4 | SN65HVD230 **D** (CTX) |
-| GPIO5 | SN65HVD230 **R** (CRX) |
+| GPIO17 (J3 핀10) | SN65HVD230 **D** (CTX) |
+| GPIO18 (J3 핀11) | SN65HVD230 **R** (CRX) |
 | 3V3 | SN65HVD230 VCC |
 | GND | SN65HVD230 GND, LM2596 OUT- |
 | 5V(VIN) | LM2596 OUT+ (**5.0V로 조정 후 연결**) |

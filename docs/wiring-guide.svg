@@ -109,8 +109,8 @@
       <text x="775" y="176" text-anchor="middle" class="t-pin-w">5V</text>
       <text x="808" y="176" text-anchor="middle" class="t-pin-w">GND</text>
       <text x="900" y="176" text-anchor="middle" class="t-pin-w">3V3</text>
-      <text x="940" y="176" text-anchor="middle" class="t-pin-w">IO4</text>
-      <text x="980" y="176" text-anchor="middle" class="t-pin-w">IO5</text>
+      <text x="940" y="176" text-anchor="middle" class="t-pin-w">IO17</text>
+      <text x="980" y="176" text-anchor="middle" class="t-pin-w">IO18</text>
       <text x="910" y="226" text-anchor="middle" class="t-name">ESP32-S3 개발보드</text>
 
       <!-- ── SN65HVD230 모듈 (보라 기판) ── -->
@@ -209,7 +209,7 @@
     </g>
     <g transform="translate(0,440)">
       <text x="0" y="0" class="t-note">① ESP32 <tspan font-weight="700">3V3</tspan> → 모듈 <tspan font-weight="700">3V3</tspan>(노랑) · ESP32 <tspan font-weight="700">GND</tspan> → 모듈 <tspan font-weight="700">GND</tspan>(검정)</text>
-      <text x="0" y="20" class="t-note">② ESP32 <tspan font-weight="700">IO4</tspan> → 모듈 <tspan font-weight="700">D</tspan> · ESP32 <tspan font-weight="700">IO5</tspan> → 모듈 <tspan font-weight="700">R</tspan> (보라 2가닥)</text>
+      <text x="0" y="20" class="t-note">② ESP32 <tspan font-weight="700">IO17</tspan> → 모듈 <tspan font-weight="700">D</tspan> · ESP32 <tspan font-weight="700">IO18</tspan> → 모듈 <tspan font-weight="700">R</tspan> (보라 2가닥)</text>
       <text x="0" y="40" class="t-warn">③ 모듈 VCC는 반드시 3V3! (5V 연결하면 트랜시버 파손) — 완료 후 bench-test.md 2단계(펌웨어)로</text>
     </g>
   </g>

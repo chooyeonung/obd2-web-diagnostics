@@ -38,8 +38,8 @@
     <circle cx="105" cy="184" r="6" class="pad"/><text x="105" y="212" text-anchor="middle" class="lbl">5V</text>
     <circle cx="145" cy="184" r="6" class="pad"/><text x="145" y="212" text-anchor="middle" class="lbl">GND</text>
     <circle cx="330" cy="184" r="6" class="pad"/><text x="330" y="212" text-anchor="middle" class="lbl">3V3</text>
-    <circle cx="385" cy="184" r="6" class="pad"/><text x="385" y="212" text-anchor="middle" class="lbl">IO4</text>
-    <circle cx="435" cy="184" r="6" class="pad"/><text x="435" y="212" text-anchor="middle" class="lbl">IO5</text>
+    <circle cx="385" cy="184" r="6" class="pad"/><text x="385" y="212" text-anchor="middle" class="lbl">IO17</text>
+    <circle cx="435" cy="184" r="6" class="pad"/><text x="435" y="212" text-anchor="middle" class="lbl">IO18</text>
 
     <!-- LM2596 -->
     <rect x="34" y="240" width="240" height="130" rx="8" class="mod"/>
@@ -116,9 +116,9 @@
       <text x="0" y="290">10</text><rect x="24" y="280" width="12" height="12" fill="#f1c40f"/><text x="42" y="290">3V3</text><text x="120" y="290">ESP32 3V3</text><text x="300" y="290">트랜시버 3V3</text>
       <line x1="0" y1="298" x2="500" y2="298" class="row"/>
 
-      <text x="0" y="316">11</text><rect x="24" y="306" width="12" height="12" fill="#9b59b6"/><text x="42" y="316">TX</text><text x="120" y="316">ESP32 IO4</text><text x="300" y="316">트랜시버 D</text>
+      <text x="0" y="316">11</text><rect x="24" y="306" width="12" height="12" fill="#9b59b6"/><text x="42" y="316">TX</text><text x="120" y="316">ESP32 IO17</text><text x="300" y="316">트랜시버 D</text>
       <line x1="0" y1="324" x2="500" y2="324" class="row"/>
-      <text x="0" y="342">12</text><rect x="24" y="332" width="12" height="12" fill="#9b59b6"/><text x="42" y="342">RX</text><text x="120" y="342">ESP32 IO5</text><text x="300" y="342">트랜시버 R</text>
+      <text x="0" y="342">12</text><rect x="24" y="332" width="12" height="12" fill="#9b59b6"/><text x="42" y="342">RX</text><text x="120" y="342">ESP32 IO18</text><text x="300" y="342">트랜시버 R</text>
       <line x1="0" y1="350" x2="500" y2="350" class="row"/>
 
       <text x="0" y="368">13</text><rect x="24" y="358" width="12" height="12" fill="#3498db"/><text x="42" y="368">CAN-H</text><text x="120" y="368">하네스 H</text><text x="300" y="368">트랜시버 CANH</text>
