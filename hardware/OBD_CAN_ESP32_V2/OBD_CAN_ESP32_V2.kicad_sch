@@ -3749,16 +3749,7 @@
 		)
 		(uuid "06e2fb2a-6df6-4f3c-99b3-e2e796fb9c75")
 	)
-	(wire
-		(pts
-			(xy 144.78 83.82) (xy 158.75 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0a22c6bd-3b40-4cc8-8d2a-5314930dddb8")
-	)
+	
 	(wire
 		(pts
 			(xy 19.05 40.64) (xy 33.02 40.64)
@@ -3819,16 +3810,7 @@
 		)
 		(uuid "26a21256-481b-4c98-a220-7a9d2b941de2")
 	)
-	(wire
-		(pts
-			(xy 144.78 91.44) (xy 158.75 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2ea94c5d-48ba-4656-bd5d-27f0d2938376")
-	)
+	
 	(wire
 		(pts
 			(xy 118.11 139.7) (xy 132.08 139.7)
@@ -3899,16 +3881,7 @@
 		)
 		(uuid "5255f465-b4df-4282-85cd-19f4121e47ac")
 	)
-	(wire
-		(pts
-			(xy 144.78 88.9) (xy 158.75 88.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "562ef6af-920f-4197-955e-df451672732d")
-	)
+	
 	(wire
 		(pts
 			(xy 38.1 52.07) (xy 38.1 58.42)
@@ -3989,16 +3962,7 @@
 		)
 		(uuid "80bab73f-2dba-4020-b074-c5ccff1aaced")
 	)
-	(wire
-		(pts
-			(xy 144.78 86.36) (xy 158.75 86.36)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "84bf2b46-d6b2-471b-ab36-a0f8116d0a10")
-	)
+	
 	(wire
 		(pts
 			(xy 29.21 163.83) (xy 33.02 163.83)
@@ -4459,16 +4423,7 @@
 		)
 		(uuid "75824ee5-11de-46f4-83d9-3417e9a3ae71")
 	)
-	(label "+5V"
-		(at 144.78 88.9 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "7d320489-4dff-48d4-8dc4-3212adf66b2e")
-	)
+	
 	(label "+3V3"
 		(at 107.95 119.38 0)
 		(effects
@@ -4559,16 +4514,7 @@
 		)
 		(uuid "a7b8440c-2e87-448e-a540-194db357a111")
 	)
-	(label "SIGNAL_GND"
-		(at 144.78 86.36 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "a9e9e396-af63-4e29-8734-753edd9db92c")
-	)
+	
 	(label "SIGNAL_GND"
 		(at 107.95 160.02 0)
 		(effects
@@ -4619,16 +4565,7 @@
 		)
 		(uuid "c5552689-4b63-45ef-a7be-4c95ac61d486")
 	)
-	(label "SIGNAL_GND"
-		(at 144.78 91.44 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "c6cd9b8d-3ea1-46e7-a720-7bc54fe43047")
-	)
+	
 	(label "CAN_H"
 		(at 217.17 142.24 0)
 		(effects
@@ -4679,16 +4616,7 @@
 		)
 		(uuid "e1d19824-4f9d-4cac-93a7-f530d9a90e50")
 	)
-	(label "VBAT_PROTECTED"
-		(at 144.78 83.82 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "e49eb5a4-d2a3-431a-be1a-5780d02531a7")
-	)
+	
 	(label "+3V3"
 		(at 33.02 163.83 0)
 		(effects
@@ -8203,6 +8131,91 @@
 			(justify left bottom)
 		)
 		(uuid "463fad2a-f16a-411e-a5ed-9d0b68180f89")
+	)
+	(junction
+		(at 287.02 50.8)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "55e3104d-13ff-4793-bcd9-7359fb0dad34")
+	)
+(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 287.02 50.8 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "42d988c8-5c2d-49da-8d80-0b2309d902fd")
+		(property "Reference" "#FLG03"
+			(at 287.02 48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 287.02 48 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 287.02 48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 287.02 48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 287.02 48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "66c73e4c-f784-492c-be23-9a149a65f10a")
+		)
+		(instances
+			(project "OBD_CAN_ESP32_V1"
+				(path "/d818bd00-b54e-48fd-8a08-8c2bd25151ea"
+					(reference "#FLG03")
+					(unit 1)
+				)
+			)
+		)
 	)
 (sheet_instances
 		(path "/"
