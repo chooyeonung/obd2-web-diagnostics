@@ -1,0 +1,132 @@
+** Drc report for OBD_CAN_ESP32_V2.kicad_pcb **
+** Created on 2026-08-10T23:22:20 **
+** Report includes: Warnings **
+
+** Found 30 DRC violations **
+[track_dangling]: Track has unconnected end
+    Local override; warning
+    @(65.5000 mm, 110.9340 mm): Track [/CHASSIS_GND] on B.Cu, length 0.0660 mm
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: 기판 구성 제약 실크; warning
+    @(55.0000 mm, 88.0000 mm): Rectangle on Edge.Cuts
+    @(125.8100 mm, 96.4400 mm): Segment of J1 on B.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: 기판 구성 제약 실크; warning
+    @(55.0000 mm, 88.0000 mm): Rectangle on Edge.Cuts
+    @(125.8100 mm, 114.0600 mm): Segment of J1 on B.Silkscreen
+[lib_footprint_mismatch]: 풋프린트 'MountingHole_2.7mm_M2.5'이(가) 라이브러리 'MountingHole'의 사본과 일치하지 않습니다
+    Local override; warning
+    @(58.0000 mm, 89.6000 mm): Footprint H1
+[lib_footprint_mismatch]: 풋프린트 'MountingHole_2.7mm_M2.5'이(가) 라이브러리 'MountingHole'의 사본과 일치하지 않습니다
+    Local override; warning
+    @(116.0000 mm, 122.4000 mm): Footprint H4
+[lib_footprint_mismatch]: 풋프린트 'MountingHole_2.7mm_M2.5'이(가) 라이브러리 'MountingHole'의 사본과 일치하지 않습니다
+    Local override; warning
+    @(116.0000 mm, 89.6000 mm): Footprint H2
+[lib_footprint_mismatch]: 풋프린트 'MountingHole_2.7mm_M2.5'이(가) 라이브러리 'MountingHole'의 사본과 일치하지 않습니다
+    Local override; warning
+    @(58.0000 mm, 122.4000 mm): Footprint H3
+[lib_footprint_mismatch]: 풋프린트 'DO-218AB_SM8S'이(가) 라이브러리 'OBD_CAN_ESP32_V1_Footprints'의 사본과 일치하지 않습니다
+    Local override; warning
+    @(105.0000 mm, 101.5000 mm): Footprint D1
+[silk_overlap]: Silkscreen clearance
+    Rule: 기판 구성 제약 실크; warning
+    @(62.2700 mm, 95.3600 mm): Segment of J4 on F.Silkscreen
+    @(87.0000 mm, 95.6000 mm): Reference field of C13
+[silk_overlap]: Silkscreen clearance
+    Rule: 기판 구성 제약 실크; warning
+    @(62.2700 mm, 95.3600 mm): Segment of J4 on F.Silkscreen
+    @(75.9200 mm, 95.7000 mm): Reference field of C10
+[silk_overlap]: Silkscreen clearance
+    Rule: 기판 구성 제약 실크; warning
+    @(76.0000 mm, 99.7000 mm): Reference field of C11
+    @(75.2087 mm, 99.3600 mm): Segment of C10 on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: 기판 구성 제약 실크; warning
+    @(87.0000 mm, 97.1660 mm): Reference field of U2
+    @(86.8594 mm, 96.5200 mm): Segment of C13 on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: 기판 구성 제약 실크; warning
+    @(87.0000 mm, 97.1660 mm): Reference field of U2
+    @(86.8594 mm, 97.5400 mm): Segment of C13 on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: 기판 구성 제약 실크; warning
+    @(62.2700 mm, 95.3600 mm): Segment of J4 on F.Silkscreen
+    @(110.0000 mm, 95.6000 mm): Reference field of F1
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(76.0000 mm, 99.7000 mm): Reference field of C11
+    @(74.4450 mm, 98.0000 mm): Pad 1 [/VBAT_PROTECTED] of C10 on F.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(76.0000 mm, 99.7000 mm): Reference field of C11
+    @(77.3950 mm, 98.0000 mm): Pad 2 [/SIGNAL_GND] of C10 on F.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(87.0000 mm, 97.1660 mm): Reference field of U2
+    @(87.7750 mm, 97.0300 mm): Pad 2 [Net-(D10-K)] of C13 on F.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(90.3700 mm, 99.8000 mm): Reference field of D10
+    @(89.6500 mm, 101.2010 mm): Pad 6 [Net-(U2-COMP)] of U2 on F.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(90.3700 mm, 99.8000 mm): Reference field of D10
+    @(89.6500 mm, 99.9310 mm): Pad 7 [/SIGNAL_GND] of U2 on F.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(90.3700 mm, 99.8000 mm): Reference field of D10
+    @(89.6500 mm, 98.6610 mm): Pad 8 [Net-(D10-K)] of U2 on F.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(87.0000 mm, 97.1660 mm): Reference field of U2
+    @(86.2250 mm, 97.0300 mm): Pad 1 [Net-(U2-BOOT)] of C13 on F.Cu
+[silk_overlap]: Silkscreen clearance
+    Rule: 기판 구성 제약 실크; warning
+    @(110.5000 mm, 95.5000 mm): Rectangle of D1 on B.Silkscreen
+    @(105.0000 mm, 107.0000 mm): Reference field of Q1
+[silk_overlap]: Silkscreen clearance
+    Rule: 기판 구성 제약 실크; warning
+    @(75.0000 mm, 102.0000 mm): Circle of TP1 on B.Silkscreen
+    @(73.9980 mm, 102.0000 mm): Reference field of TP2
+[silk_overlap]: Silkscreen clearance
+    Rule: 기판 구성 제약 실크; warning
+    @(75.0000 mm, 108.0000 mm): Circle of TP5 on B.Silkscreen
+    @(73.9980 mm, 108.0000 mm): Reference field of TP6
+[silk_overlap]: Silkscreen clearance
+    Rule: 기판 구성 제약 실크; warning
+    @(72.0000 mm, 102.0000 mm): Circle of TP2 on B.Silkscreen
+    @(70.9980 mm, 102.0000 mm): Reference field of TP3
+[silk_overlap]: Silkscreen clearance
+    Rule: 기판 구성 제약 실크; warning
+    @(67.9980 mm, 102.0000 mm): Reference field of TP4
+    @(69.0000 mm, 102.0000 mm): Circle of TP3 on B.Silkscreen
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(73.9980 mm, 102.0000 mm): Reference field of TP2
+    @(75.0000 mm, 102.0000 mm): Pad 1 [/VBAT_OBD] of TP1 on B.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(73.9980 mm, 108.0000 mm): Reference field of TP6
+    @(75.0000 mm, 108.0000 mm): Pad 1 [/+3V3] of TP5 on B.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(70.9980 mm, 102.0000 mm): Reference field of TP3
+    @(72.0000 mm, 102.0000 mm): Pad 1 [/VBAT_FUSED] of TP2 on B.Cu
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(67.9980 mm, 102.0000 mm): Reference field of TP4
+    @(69.0000 mm, 102.0000 mm): Pad 1 [/VBAT_PROTECTED] of TP3 on B.Cu
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **

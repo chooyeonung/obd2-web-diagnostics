@@ -95,7 +95,7 @@
 		(tags "capacitor")
 		(property "Reference" "C13"
 			(at 0 -1.43 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "5f3772cf-a018-41c4-9cbd-37c5a90a7bba")
 			(effects
 				(font
@@ -253,7 +253,7 @@
 		(tags "swpa")
 		(property "Reference" "L1"
 			(at 0 -3.95 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "9e48bf89-fc12-46da-866a-37b93eeabd4b")
 			(effects
 				(font
@@ -522,7 +522,7 @@
 		(tags "Through hole pin header THT 1x22 2.54mm single row")
 		(property "Reference" "J4"
 			(at 0 -2.38 90)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "95d49091-91a5-4cd4-b13d-76af3d0ee2bf")
 			(effects
 				(font
@@ -985,7 +985,7 @@
 		(tags "resistor")
 		(property "Reference" "R2"
 			(at 0 -1.65 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "c1668523-fdbc-46c7-9a21-4f24664c909c")
 			(effects
 				(font
@@ -1143,7 +1143,7 @@
 		(tags "capacitor")
 		(property "Reference" "C1"
 			(at 0 -1.68 90)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "656b77a3-d13f-4fcc-9018-a6cb40348223")
 			(effects
 				(font
@@ -1302,7 +1302,7 @@
 		(tags "HSOP SO")
 		(property "Reference" "U2"
 			(at 0 -3.4 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "38534686-41f3-4f7e-b134-f177f83181ab")
 			(effects
 				(font
@@ -1808,7 +1808,7 @@
 		(tags "SOD-123")
 		(property "Reference" "D2"
 			(at 0 -2 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "9bb17b57-e83b-466d-87f2-5222549048b7")
 			(effects
 				(font
@@ -2096,7 +2096,7 @@
 		(at 58 89.6)
 		(property "Reference" "H1"
 			(at 0 -3 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(hide yes)
 			(uuid "b39dba5b-a506-4c02-8bad-e35ae98543e6")
 			(effects
@@ -2157,7 +2157,7 @@
 		(at 116 122.4)
 		(property "Reference" "H4"
 			(at 0 -3 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(hide yes)
 			(uuid "64a6aadc-33c9-46f8-b824-3b37067b96ee")
 			(effects
@@ -2221,7 +2221,7 @@
 		(tags "Through hole pin header THT 1x22 2.54mm single row")
 		(property "Reference" "J3"
 			(at 0 -2.38 90)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "414a8e6c-c6b9-4345-b491-6acea2cf3a99")
 			(effects
 				(font
@@ -2684,7 +2684,7 @@
 		(tags "resistor")
 		(property "Reference" "R3"
 			(at 0 -1.65 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "46d98b38-a2e4-4e94-be16-d3a982f1e36f")
 			(effects
 				(font
@@ -2842,7 +2842,7 @@
 		(tags "fuse handsolder")
 		(property "Reference" "F1"
 			(at 0 -2.65 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "d4eaba00-a5c8-47cc-a987-1711549c69a6")
 			(effects
 				(font
@@ -2998,7 +2998,7 @@
 		(at 116 89.6)
 		(property "Reference" "H2"
 			(at 0 -3 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(hide yes)
 			(uuid "1b5a9c7e-87f5-4927-b6bc-2c6f4288f0cf")
 			(effects
@@ -3061,7 +3061,7 @@
 		(tags "capacitor")
 		(property "Reference" "C15"
 			(at 0 -1.85 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "5787eb23-f08e-47a0-bf97-a999f7c1c38c")
 			(effects
 				(font
@@ -3219,7 +3219,7 @@
 		(tags "capacitor")
 		(property "Reference" "C16"
 			(at 0 -1.43 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "fcac87a0-b9e4-442e-9561-fa5efa591bd7")
 			(effects
 				(font
@@ -3377,7 +3377,7 @@
 		(tags "capacitor")
 		(property "Reference" "C10"
 			(at 0 -2.3 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "7e6a21f6-697d-48e0-8636-cfeb2d8843cb")
 			(effects
 				(font
@@ -3535,7 +3535,7 @@
 		(tags "resistor")
 		(property "Reference" "R12"
 			(at 0 -1.43 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "c672b3e4-9455-43db-88b8-8323223ad43f")
 			(effects
 				(font
@@ -3692,7 +3692,7 @@
 		(at 58 122.4)
 		(property "Reference" "H3"
 			(at 0 -3 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(hide yes)
 			(uuid "16bf1e32-2efd-4ac3-8152-71c4cea7266c")
 			(effects
@@ -3755,7 +3755,7 @@
 		(tags "resistor")
 		(property "Reference" "R13"
 			(at 0 -1.43 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "a17ae970-535c-4a69-b5e1-5d566c6171b6")
 			(effects
 				(font
@@ -3913,7 +3913,7 @@
 		(tags "capacitor")
 		(property "Reference" "C12"
 			(at 0 -1.68 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "7603db97-1ecd-4a3d-9ae7-a30f1d61e1df")
 			(effects
 				(font
@@ -4071,7 +4071,7 @@
 		(tags "resistor")
 		(property "Reference" "R1"
 			(at 0 -1.65 90)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "ac1c8308-50d4-4b91-b236-381038d9b10d")
 			(effects
 				(font
@@ -4229,7 +4229,7 @@
 		(tags "resistor")
 		(property "Reference" "R11"
 			(at 0 -1.43 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "6c42545e-90e0-441d-9e42-395e05367411")
 			(effects
 				(font
@@ -4387,7 +4387,7 @@
 		(tags "Diode SMA (DO-214AC)")
 		(property "Reference" "D10"
 			(at 0 -2.5 90)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "d2cd384a-3463-409e-9fb9-2b742a9137c9")
 			(effects
 				(font
@@ -4666,7 +4666,7 @@
 		(tags "capacitor")
 		(property "Reference" "C11"
 			(at 0 -2.3 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "1eedfa0d-1825-4b85-b1a2-9f53fbd26781")
 			(effects
 				(font
@@ -4824,7 +4824,7 @@
 		(tags "SOT TO_SOT_SMD")
 		(property "Reference" "D3"
 			(at 0 -2.4 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "d1dbaa16-b3c6-4ebc-b925-211a17c46cfe")
 			(effects
 				(font
@@ -5195,7 +5195,7 @@
 		(tags "SOIC SO")
 		(property "Reference" "U1"
 			(at 0 -3.4 90)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "1b162668-66f4-4fa9-a707-1193f2d9d2ad")
 			(effects
 				(font
@@ -5579,7 +5579,7 @@
 		(tags "capacitor")
 		(property "Reference" "C14"
 			(at 0 -1.85 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "24185c14-75b1-4b94-aae1-07895100b417")
 			(effects
 				(font
@@ -5738,7 +5738,7 @@
 		(tags "resistor")
 		(property "Reference" "R10"
 			(at 0 -1.43 0)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "1360c200-8bac-439a-992a-f18e452427b7")
 			(effects
 				(font
@@ -5896,7 +5896,7 @@
 		(tags "test point SMD pad")
 		(property "Reference" "TP5"
 			(at 0 2.5 90)
-			(layer "B.SilkS")
+			(layer "B.Fab")
 			(uuid "aea70b2a-f6ce-4c27-a4c9-3106fe0afa0a")
 			(effects
 				(font
@@ -6010,7 +6010,7 @@
 		(tags "test point SMD pad")
 		(property "Reference" "TP2"
 			(at 0 1.998 90)
-			(layer "B.SilkS")
+			(layer "B.Fab")
 			(uuid "6ee23d54-aa20-44e4-9821-e21a0e0cb08e")
 			(effects
 				(font
@@ -6124,7 +6124,7 @@
 		(tags "connector JST XH horizontal")
 		(property "Reference" "J1"
 			(at 6.25 3.51 90)
-			(layer "B.SilkS")
+			(layer "B.Fab")
 			(uuid "50da5854-c558-47db-8f91-e926473f3bff")
 			(effects
 				(font
@@ -6286,7 +6286,7 @@
 			(uuid "f9e0d3b1-f56f-4e93-aa6a-eb01f445ef32")
 		)
 		(fp_line
-			(start -2.56 -9.31)
+			(start -2.56 -2.1)
 			(end -2.56 2.41)
 			(stroke
 				(width 0.12)
@@ -6296,27 +6296,7 @@
 			(uuid "164b8a1e-6813-4361-94d8-ef9b8ed483b6")
 		)
 		(fp_line
-			(start 6.25 -9.31)
-			(end -2.56 -9.31)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "B.SilkS")
-			(uuid "37ed65f4-523d-4961-9c3f-bda65d75bf26")
-		)
-		(fp_line
-			(start 6.25 -9.31)
-			(end 15.06 -9.31)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "B.SilkS")
-			(uuid "c1ca1fbf-da66-4e48-862a-61a19d1a6b76")
-		)
-		(fp_line
-			(start 15.06 -9.31)
+			(start 15.06 -2.1)
 			(end 15.06 2.41)
 			(stroke
 				(width 0.12)
@@ -6324,72 +6304,6 @@
 			)
 			(layer "B.SilkS")
 			(uuid "440b721c-f41c-46f9-8547-d0ba6e51384b")
-		)
-		(fp_rect
-			(start -0.25 -3.2)
-			(end 0.25 -8.7)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(fill no)
-			(layer "B.SilkS")
-			(uuid "9b8f60c3-eebb-4900-9214-653bb783ce9e")
-		)
-		(fp_rect
-			(start 2.25 -3.2)
-			(end 2.75 -8.7)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(fill no)
-			(layer "B.SilkS")
-			(uuid "b3f81fe4-db94-453f-b0d2-6893104de233")
-		)
-		(fp_rect
-			(start 4.75 -3.2)
-			(end 5.25 -8.7)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(fill no)
-			(layer "B.SilkS")
-			(uuid "c52e94c2-ee8b-43b6-b0b1-7665f6c8686d")
-		)
-		(fp_rect
-			(start 7.25 -3.2)
-			(end 7.75 -8.7)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(fill no)
-			(layer "B.SilkS")
-			(uuid "424b9ea4-ff57-4d7f-9bac-cfef62317518")
-		)
-		(fp_rect
-			(start 9.75 -3.2)
-			(end 10.25 -8.7)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(fill no)
-			(layer "B.SilkS")
-			(uuid "b99e99c8-4b74-4575-9c37-4febc555777a")
-		)
-		(fp_rect
-			(start 12.25 -3.2)
-			(end 12.75 -8.7)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(fill no)
-			(layer "B.SilkS")
-			(uuid "cc783583-1f42-4ea8-900d-a413ecc645b9")
 		)
 		(fp_rect
 			(start -2.95 2.81)
@@ -6623,7 +6537,7 @@
 		(tags "test point SMD pad")
 		(property "Reference" "TP7"
 			(at 2.5 -11.5 90)
-			(layer "B.SilkS")
+			(layer "B.Fab")
 			(hide yes)
 			(uuid "d877420e-48fd-40ba-8d9f-4bc1debc62e5")
 			(effects
@@ -6738,7 +6652,7 @@
 		(tags "DPAK TO-252 DPAK-3 TO-252-3 SOT-428")
 		(property "Reference" "Q1"
 			(at 0 4.5 0)
-			(layer "B.SilkS")
+			(layer "B.Fab")
 			(uuid "dbe94f27-fccb-4552-a0fc-f6c440493438")
 			(effects
 				(font
@@ -7064,7 +6978,7 @@
 		(tags "test point SMD pad")
 		(property "Reference" "TP1"
 			(at 0 1.998 90)
-			(layer "B.SilkS")
+			(layer "B.Fab")
 			(uuid "6550a0fe-5576-4d49-9b3f-1be095a9d751")
 			(effects
 				(font
@@ -7177,7 +7091,7 @@
 		(property "Reference" "D1"
 			(at 6.325 1.5 90)
 			(unlocked yes)
-			(layer "B.SilkS")
+			(layer "B.Fab")
 			(uuid "1b4faf15-8211-436c-a610-3c02871493e9")
 			(effects
 				(font
@@ -7277,7 +7191,7 @@
 		(pad "1" smd rect
 			(at 0 0 180)
 			(size 8.4 8)
-			(layers "B.Cu" "B.Mask" "B.SilkS" "B.Paste")
+			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net "/CHASSIS_GND")
 			(pinfunction "A1_1")
 			(pintype "passive")
@@ -7286,7 +7200,7 @@
 		(pad "2" smd rect
 			(at 9.325 0 180)
 			(size 2.15 2.6)
-			(layers "B.Cu" "B.Mask" "B.SilkS" "B.Paste")
+			(layers "B.Cu" "B.Mask" "B.Paste")
 			(net "/VBAT_FUSED")
 			(pinfunction "A2_2")
 			(pintype "passive")
@@ -7302,7 +7216,7 @@
 		(tags "test point SMD pad")
 		(property "Reference" "TP6"
 			(at 0 1.998 90)
-			(layer "B.SilkS")
+			(layer "B.Fab")
 			(uuid "f9f39d23-43b5-40f1-aaff-adbb1da3a4c8")
 			(effects
 				(font
@@ -7417,7 +7331,7 @@
 		(tags "test point SMD pad")
 		(property "Reference" "TP4"
 			(at 0 1.998 90)
-			(layer "B.SilkS")
+			(layer "B.Fab")
 			(uuid "a2426774-4879-41c7-bac1-84a16c2ddde3")
 			(effects
 				(font
@@ -7531,7 +7445,7 @@
 		(tags "test point SMD pad")
 		(property "Reference" "TP3"
 			(at 0 1.998 90)
-			(layer "B.SilkS")
+			(layer "B.Fab")
 			(uuid "45de29e5-e55b-49e4-8adf-a6ea7eeb8d7b")
 			(effects
 				(font
@@ -7645,7 +7559,7 @@
 		(tags "test point SMD pad")
 		(property "Reference" "TP8"
 			(at -3.5 0 90)
-			(layer "B.SilkS")
+			(layer "B.Fab")
 			(uuid "e53ded25-9c76-4b1b-8c73-40a1daa1f414")
 			(effects
 				(font
@@ -8127,36 +8041,12 @@
 		(uuid "30ece198-c97c-47fd-8f3e-5ba9e483f948")
 	)
 	(segment
-		(start 70.5 106.7)
-		(end 68.4615 106.7)
-		(width 0.2)
-		(layer "B.Cu")
-		(net "/CHASSIS_GND")
-		(uuid "3f926d03-b7bd-4cd5-b67d-e3258e2f7c1b")
-	)
-	(segment
 		(start 99.8 106.7)
 		(end 70.5 106.7)
 		(width 0.2)
 		(layer "B.Cu")
 		(net "/CHASSIS_GND")
 		(uuid "42a1dcd3-8da2-4936-9dc5-3bfc6834120b")
-	)
-	(segment
-		(start 68.4615 106.7)
-		(end 67.7 107.462)
-		(width 0.2)
-		(layer "B.Cu")
-		(net "/CHASSIS_GND")
-		(uuid "99d1e856-c4ff-4980-b7c0-3b4d1d425a3b")
-	)
-	(segment
-		(start 67.7 107.462)
-		(end 67.7 108.734)
-		(width 0.2)
-		(layer "B.Cu")
-		(net "/CHASSIS_GND")
-		(uuid "9a395590-5946-48f7-8124-b68f3fd9a0e3")
 	)
 	(segment
 		(start 116.5 101.5)
@@ -8173,22 +8063,6 @@
 		(layer "B.Cu")
 		(net "/CHASSIS_GND")
 		(uuid "ccb21481-0d31-4fc6-b88f-ebe87103d19e")
-	)
-	(segment
-		(start 65.5 110.934)
-		(end 65.5 111)
-		(width 0.2)
-		(layer "B.Cu")
-		(net "/CHASSIS_GND")
-		(uuid "da81f13d-06ea-4090-8301-fc2bc60f779c")
-	)
-	(segment
-		(start 67.7 108.734)
-		(end 65.5 110.934)
-		(width 0.2)
-		(layer "B.Cu")
-		(net "/CHASSIS_GND")
-		(uuid "eb6b651f-be64-4294-8f8a-a332555341f0")
 	)
 	(segment
 		(start 70.5 106.7)
