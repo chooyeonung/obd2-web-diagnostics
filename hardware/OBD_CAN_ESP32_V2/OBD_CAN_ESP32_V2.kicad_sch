@@ -2539,7 +2539,7 @@
 					)
 				)
 			)
-			(property "Footprint" "Inductor_SMD:L_6.3x6.3_H4.5"
+			(property "Footprint" "Inductor_SMD:L_Sunlord_SWPA6045S"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2654,7 +2654,7 @@
 					)
 				)
 			)
-			(property "Footprint" "Package_SO:HSOP-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.1mm"
+			(property "Footprint" "Package_SO:HSOP-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.1mm_ThermalVias"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -6243,7 +6243,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Inductor_SMD:L_6.3x6.3_H4.5"
+		(property "Footprint" "Inductor_SMD:L_Sunlord_SWPA6045S"
 			(at 340.36 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -6323,7 +6323,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_SO:HSOP-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.1mm"
+		(property "Footprint" "Package_SO:HSOP-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.1mm_ThermalVias"
 			(at 312.42 55.88 0)
 			(hide yes)
 			(show_name no)

@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "OBD2DIY")(type "KiCad")(uri "${KIPRJMOD}/OBD2DIY.kicad_sym")(options "")(descr "V2 buck converter symbols"))
+)
