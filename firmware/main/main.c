@@ -7,6 +7,7 @@
  * 웹앱(Blazor WASM)의 WebSocketTransport와 대화 규격이 맞춰져 있다:
  *   텍스트 프레임으로 ELM327 명령 수신 → "응답\r\r>" 프레임 송신
  */
+#include <stdbool.h>
 #include "nvs_flash.h"
 #include "esp_log.h"
 #include "esp_littlefs.h"
@@ -14,6 +15,7 @@
 #include "elm327.h"
 #include "wifi_ap.h"
 #include "ws_server.h"
+#include "led_status.h"
 
 static const char *TAG = "main";
 
@@ -43,16 +45,20 @@ void app_main(void)
         ESP_ERROR_CHECK(nvs_flash_init());
     }
 
+    led_status_init();          // 흰색: 부팅 중
     elm327_reset();
     mount_littlefs();
 
     ESP_ERROR_CHECK(wifi_ap_start());
 
     // CAN은 실패해도 서버는 띄운다 (벤치에서 트랜시버 미연결 상태 대비)
-    if (twai_bus_start() != ESP_OK)
+    bool can_ok = (twai_bus_start() == ESP_OK);
+    if (!can_ok)
         ESP_LOGW(TAG, "TWAI start failed — OBD 요청은 NO DATA로 응답됩니다");
 
     ESP_ERROR_CHECK(ws_server_start());
+
+    led_status_set(can_ok ? LED_AP_READY : LED_CAN_FAIL);
 
     ESP_LOGI(TAG, "준비 완료: WiFi 'OBD2-DIAG' 접속 후 http://192.168.4.1/ 접속");
 }

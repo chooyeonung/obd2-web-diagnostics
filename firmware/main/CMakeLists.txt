@@ -1,5 +1,5 @@
 idf_component_register(
-    SRCS "main.c" "twai_bus.c" "obd.c" "elm327.c" "wifi_ap.c" "ws_server.c" "ota_update.c"
+    SRCS "main.c" "twai_bus.c" "obd.c" "elm327.c" "wifi_ap.c" "ws_server.c" "ota_update.c" "led_status.c"
     INCLUDE_DIRS "."
     REQUIRES driver esp_wifi esp_http_server nvs_flash esp_netif app_update esp_app_format
     PRIV_REQUIRES esp_timer

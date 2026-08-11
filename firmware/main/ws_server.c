@@ -7,6 +7,7 @@
 #include "esp_log.h"
 #include "esp_check.h"
 #include "ota_update.h"
+#include "led_status.h"
 
 static const char *TAG = "ws_server";
 #define FS_BASE "/littlefs"
@@ -34,6 +35,7 @@ static esp_err_t ws_handler(httpd_req_t *req)
 
     // ELM327 처리 → 응답 프레임
     static char out[512];
+    led_status_activity();
     size_t out_len = elm327_process((const char *)buf, out, sizeof(out));
 
     httpd_ws_frame_t resp = {

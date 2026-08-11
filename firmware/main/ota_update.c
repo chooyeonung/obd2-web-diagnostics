@@ -8,6 +8,7 @@
  * GET  /ota/status : 현재 실행 파티션/버전 JSON
  */
 #include "ota_update.h"
+#include "led_status.h"
 #include <string.h>
 #include "esp_log.h"
 #include "esp_ota_ops.h"
@@ -37,6 +38,7 @@ static esp_err_t ota_post_handler(httpd_req_t *req)
     }
 
     ESP_LOGI(TAG, "OTA start: %u bytes -> %s", (unsigned)req->content_len, target->label);
+    led_status_set(LED_OTA);
 
     esp_ota_handle_t ota = 0;
     esp_err_t err = esp_ota_begin(target, req->content_len, &ota);
@@ -64,6 +66,7 @@ static esp_err_t ota_post_handler(httpd_req_t *req)
         if (!image_checked) {
             if ((uint8_t)buf[0] != 0xE9) {
                 esp_ota_abort(ota);
+                led_status_set(LED_AP_READY);
                 httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "not an app image (.bin)");
                 return ESP_FAIL;
             }
@@ -72,6 +75,7 @@ static esp_err_t ota_post_handler(httpd_req_t *req)
         err = esp_ota_write(ota, buf, r);
         if (err != ESP_OK) {
             esp_ota_abort(ota);
+            led_status_set(LED_AP_READY);
             ESP_LOGE(TAG, "esp_ota_write: %s", esp_err_to_name(err));
             httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "ota_write failed");
             return ESP_FAIL;
@@ -82,6 +86,7 @@ static esp_err_t ota_post_handler(httpd_req_t *req)
 
     err = esp_ota_end(ota);
     if (err != ESP_OK) {
+        led_status_set(LED_AP_READY);
         ESP_LOGE(TAG, "esp_ota_end: %s (이미지 손상?)", esp_err_to_name(err));
         httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "image verify failed");
         return ESP_FAIL;
