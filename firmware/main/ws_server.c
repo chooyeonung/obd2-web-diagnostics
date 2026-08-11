@@ -6,6 +6,7 @@
 #include "esp_http_server.h"
 #include "esp_log.h"
 #include "esp_check.h"
+#include "ota_update.h"
 
 static const char *TAG = "ws_server";
 #define FS_BASE "/littlefs"
@@ -107,7 +108,7 @@ esp_err_t ws_server_start(void)
     httpd_handle_t server = NULL;
     httpd_config_t cfg = HTTPD_DEFAULT_CONFIG();
     cfg.uri_match_fn = httpd_uri_match_wildcard;
-    cfg.max_uri_handlers = 4;
+    cfg.max_uri_handlers = 6;
 
     ESP_RETURN_ON_ERROR(httpd_start(&server, &cfg), TAG, "httpd_start");
 
@@ -118,6 +119,8 @@ esp_err_t ws_server_start(void)
         .is_websocket = true,
     };
     httpd_register_uri_handler(server, &ws_uri);
+
+    ota_register_handlers(server);   // POST /ota, GET /ota/status
 
     static const httpd_uri_t static_uri = {
         .uri = "/*",
