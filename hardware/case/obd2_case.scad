@@ -8,6 +8,9 @@ H_BOT   = 8.5;   // PCB 아랫면 여유 (J1 하우징 ~7mm + 여유) [실측 �
 H_TOP   = 16;    // PCB 윗면 여유 (소켓+데브킷+USB 상단) [실측 확인]
 USB_Z0  = 9.5;   // PCB 윗면 기준 USB 개구 시작 높이 [실측 확인]
 USB_Z1  = 15.5;  // USB 개구 끝 높이 [실측 확인]
+LED_X   = 52;    // 데브킷 RGB LED 위치 X [실측 확인 — 데브킷 USB쪽 끝 근처]
+LED_Y   = 17.5;  // 데브킷 RGB LED 위치 Y [실측 확인]
+LED_D   = 5;     // LED 창 지름
 
 /* ----- 보드 데이터 (PCB에서 추출한 고정값) ----- */
 BW = 64;  BH = 36;  PCB_T = 1.6;
@@ -76,6 +79,9 @@ module lid() {
     // USB 개구 (오른쪽 벽, PCB 위)
     translate([IX1-0.1, USB_Y0, USB_Z0])
       cube([WALL+2, USB_Y1-USB_Y0, USB_Z1-USB_Z0]);
+    // LED 창 (데브킷 RGB LED 위, 원뿔형으로 벌어짐)
+    translate([LED_X, LED_Y, H_TOP-1])
+      cylinder(d1=LED_D, d2=LED_D+2*(ROOF+1)*0.8, h=ROOF+2);
     // 상단 통풍 슬롯 (벅 컨버터 상부: X 20~45)
     for (i=[0:4]) translate([22+i*5, 8, H_TOP-1]) cube([2.5, BH-16, ROOF+2]);
     // 나사 관통 + 카운터보어
